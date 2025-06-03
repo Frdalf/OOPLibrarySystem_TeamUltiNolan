@@ -1,0 +1,9 @@
+com\example\library\controller\RegisterFormController.class
+com\example\library\data\DataManager.class
+com\example\library\controller\MemberController.class
+com\example\library\model\Book.class
+com\example\library\model\Transaction.class
+com\example\library\controller\AdminController.class
+com\example\library\model\Member.class
+com\example\library\controller\LoginController.class
+com\example\library\MainApp.class

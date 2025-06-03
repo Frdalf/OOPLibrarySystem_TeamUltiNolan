@@ -1,0 +1,64 @@
+/* src/main/resources/css/admin_styles.css */
+.menu-button {
+    -fx-background-color: #34495e;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-width: 0 0 0 3px;
+    -fx-border-color: transparent;
+}
+
+.menu-button:hover {
+    -fx-background-color: #4a6278;
+    -fx-border-color: #3498db; /* Biru muda untuk hover */
+}
+
+.menu-button:focused {
+    -fx-background-color: #2c3e50; /* Warna lebih gelap saat aktif/fokus */
+    -fx-border-color: #2980b9; /* Biru lebih gelap saat aktif/fokus */
+}
+
+.logout-button {
+    -fx-background-color: #c0392b; /* Merah untuk logout */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-alignment: CENTER;
+}
+
+.logout-button:hover {
+    -fx-background-color: #e74c3c; /* Merah lebih terang saat hover */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #3498db; /* Biru untuk header tabel */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell {
+    -fx-font-size: 13px;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #bdc3c7; /* Abu-abu muda untuk background header tab */
+}
+
+.tab-pane .tab {
+    -fx-background-color: #ecf0f1; /* Warna default tab */
+    -fx-padding: 5px 15px;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #ffffff; /* Putih untuk tab yang dipilih */
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px 0 0 0;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #dfe6e9;
+}
