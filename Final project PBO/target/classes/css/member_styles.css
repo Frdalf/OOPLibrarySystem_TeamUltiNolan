@@ -1,0 +1,161 @@
+/* src/main/resources/css/member_styles.css */
+.member-menu-button {
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 12 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 0, 0, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+.member-menu-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-border-color: rgba(255, 255, 255, 0.6);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-translate-y: -2;
+}
+
+.member-menu-button:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-border-color: rgba(255, 255, 255, 0.5);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 0, 0, 0, 0);
+    -fx-translate-y: 0;
+}
+
+.member-logout-button {
+    -fx-background-color: #e74c3c;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: #e74c3c;
+    -fx-border-width: 1;
+    -fx-padding: 12 24 24 24;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 2, 0, 0, 1);
+    -fx-transition: all 0.2s;
+}
+
+.member-logout-button:hover {
+    -fx-background-color: #d8432b;
+    -fx-border-color: #d8432b;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 8, 0, 0, 2);
+    -fx-scale-y: 1.04;
+    -fx-translate-y: -4;
+}
+
+.member-logout-button:pressed {
+    -fx-background-color: #b93d2a;
+    -fx-border-color: #b93d2a;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-translate-y: 0;
+}
+
+.menu-container {
+    -fx-padding: 10;
+}
+
+/* Table styles */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #e0e0e0;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 10;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+}
+
+/* Button styles */
+.button {
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+}
+
+/* Text field styles */
+.text-field {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #e0e0e0;
+    -fx-padding: 8;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+}
+
+/* Spinner styles */
+.spinner {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #e0e0e0;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e0e0e0;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #5bc0de; /* Biru info untuk header tabel */
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #A9A9A9; /* Abu-abu gelap untuk background header tab */
+}
+
+.tab-pane .tab {
+    -fx-background-color: #DCDCDC; /* Abu-abu terang default tab */
+    -fx-padding: 5px 15px;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #ffffff; /* Putih untuk tab yang dipilih */
+    -fx-border-color: #4682B4;
+    -fx-border-width: 2px 0 0 0;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #C0C0C0; /* Silver saat hover */
+}
