@@ -91,9 +91,6 @@ public class AdminController {
     @FXML private ComboBox<String> bulanComboBox;
     @FXML private ComboBox<String> tahunComboBox;
 
-    // Add dark mode field
-    private boolean isDarkMode = false;
-
     @FXML
     public void initialize() {
         // Setup Tabel Buku
@@ -754,17 +751,6 @@ public class AdminController {
             }
         }
         recentTransactionsTable.setItems(filtered);
-    }
-
-    @FXML
-    private void toggleDarkMode() {
-        if (mainContentPane.getStyleClass().contains("dark-mode")) {
-            mainContentPane.getStyleClass().remove("dark-mode");
-            mainContentPane.getStyleClass().add("light-mode");
-        } else {
-            mainContentPane.getStyleClass().remove("light-mode");
-            mainContentPane.getStyleClass().add("dark-mode");
-        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
