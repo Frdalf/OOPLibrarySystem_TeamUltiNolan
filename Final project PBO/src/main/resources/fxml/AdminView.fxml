@@ -74,7 +74,7 @@
                     <ComboBox fx:id="tahunComboBox" prefWidth="100" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 13px;"/>
                     <Button text="Filter" onAction="#filterTransaksiDashboard" styleClass="button-blue"/>
                 </HBox>
-                <TableView fx:id="recentTransactionsTable" prefHeight="250.0" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #89CFF0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.0), 10, 0, 0, 2);">
+                <TableView fx:id="recentTransactionsTable" prefHeight="250.0" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #ffffff; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.0), 10, 0, 0, 2);">
                     <columns>
                         <TableColumn fx:id="transNoCol" text="No" prefWidth="65" minWidth="65" maxWidth="65"/>
                         <TableColumn fx:id="transRegNoCol" text="No Reg" prefWidth="90" minWidth="90" maxWidth="90"/>

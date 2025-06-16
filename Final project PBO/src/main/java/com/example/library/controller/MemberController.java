@@ -196,4 +196,16 @@ public class MemberController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    private void handleButtonHover(javafx.scene.input.MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setStyle(button.getStyle() + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2); -fx-translate-y: -2;");
+    }
+
+    @FXML
+    private void handleButtonExit(javafx.scene.input.MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setStyle(button.getStyle().replace("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2); -fx-translate-y: -2;", ""));
+    }
 }
