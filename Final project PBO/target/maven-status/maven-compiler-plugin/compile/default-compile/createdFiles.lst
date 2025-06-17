@@ -8,7 +8,6 @@ com\example\library\service\EmailService$1.class
 com\example\library\model\Book.class
 com\example\library\model\Transaction.class
 com\example\library\controller\ForgotPasswordController.class
-com\example\library\controller\ForgotPasswordController$1.class
 com\example\library\model\Member.class
 com\example\library\controller\LoginController.class
 com\example\library\MainApp.class

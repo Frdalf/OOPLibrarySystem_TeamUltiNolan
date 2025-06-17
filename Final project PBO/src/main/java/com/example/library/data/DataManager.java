@@ -175,6 +175,29 @@ public class DataManager {
         }
     }
 
+    public static boolean updateMemberPassword(String email, String newPassword) {
+        List<Member> members = loadMembers();
+        Optional<Member> optMember = members.stream()
+                .filter(m -> m.getEmail().equalsIgnoreCase(email))
+                .findFirst();
+
+        if (optMember.isPresent()) {
+            Member memberToUpdate = optMember.get();
+            memberToUpdate.setPassword(newPassword); // Set the new password
+
+            // Update the member in the list
+            for (int i = 0; i < members.size(); i++) {
+                if (members.get(i).getMemberId().equals(memberToUpdate.getMemberId())) {
+                    members.set(i, memberToUpdate);
+                    break;
+                }
+            }
+            saveMembers(members);
+            return true;
+        }
+        return false;
+    }
+
     // --- Operasi Transaksi ---
     public static List<Transaction> loadTransactions() {
         List<Transaction> transactions = new ArrayList<>();

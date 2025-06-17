@@ -14,6 +14,7 @@ import com.example.library.model.Transaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -197,43 +198,50 @@ public class AdminController {
     private void handleAddBook() {
         Dialog<Book> dialog = new Dialog<>();
         dialog.setTitle("Tambah Buku Baru");
-        dialog.setHeaderText("Masukkan detail buku baru:");
+        dialog.setHeaderText("Masukkan detail buku baru");
         dialog.initModality(Modality.WINDOW_MODAL);
         dialog.initOwner(MainApp.getPrimaryStage());
 
+        // Add stylesheet
+        dialog.getDialogPane().getStylesheets().add(
+            getClass().getResource("/css/admin_styles.css").toExternalForm()
+        );
+        dialog.getDialogPane().getStyleClass().add("dialog-pane");
 
         ButtonType saveButtonType = new ButtonType("Simpan", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
+        ButtonType cancelButtonType = new ButtonType("Batal", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, cancelButtonType);
+
+        // Style the cancel button
+        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
+        cancelButton.getStyleClass().add("cancel-button");
 
         GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+        grid.getStyleClass().add("dialog-grid");
 
         TextField isbnField = new TextField();
-        isbnField.setPromptText("ISBN");
+        isbnField.setPromptText("Masukkan ISBN");
         TextField titleField = new TextField();
-        titleField.setPromptText("Judul");
+        titleField.setPromptText("Masukkan judul buku");
         TextField authorField = new TextField();
-        authorField.setPromptText("Penulis");
+        authorField.setPromptText("Masukkan nama penulis");
         TextField quantityField = new TextField();
-        quantityField.setPromptText("Jumlah Total");
-        // Kuantitas tersedia akan sama dengan kuantitas total saat buku baru ditambahkan
+        quantityField.setPromptText("Masukkan jumlah buku");
 
-        grid.add(new Label("ISBN:"), 0, 0);
+        // Add icons to labels
+        grid.add(new Label("📚 ISBN:"), 0, 0);
         grid.add(isbnField, 1, 0);
-        grid.add(new Label("Judul:"), 0, 1);
+        grid.add(new Label("📖 Judul:"), 0, 1);
         grid.add(titleField, 1, 1);
-        grid.add(new Label("Penulis:"), 0, 2);
+        grid.add(new Label("✍ Penulis:"), 0, 2);
         grid.add(authorField, 1, 2);
-        grid.add(new Label("Jumlah Total:"), 0, 3);
+        grid.add(new Label("📦 Jumlah:"), 0, 3);
         grid.add(quantityField, 1, 3);
 
         dialog.getDialogPane().setContent(grid);
 
         // Validasi input sebelum tombol Simpan diaktifkan
         javafx.scene.Node saveButton = dialog.getDialogPane().lookupButton(saveButtonType);
-        saveButton.setDisable(true);
         Runnable validateInput = () -> {
             boolean disabled = isbnField.getText().trim().isEmpty() ||
                     titleField.getText().trim().isEmpty() ||
@@ -241,8 +249,8 @@ public class AdminController {
                     quantityField.getText().trim().isEmpty();
             if (!disabled) {
                 try {
-                    Integer.parseInt(quantityField.getText().trim()); // Cek apakah angka
-                    saveButton.setDisable(false);
+                    int qty = Integer.parseInt(quantityField.getText().trim());
+                    saveButton.setDisable(qty <= 0);
                 } catch (NumberFormatException e) {
                     saveButton.setDisable(true);
                 }
@@ -250,28 +258,33 @@ public class AdminController {
                 saveButton.setDisable(true);
             }
         };
-        isbnField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        titleField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        authorField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        quantityField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
 
+        // Add listeners to all text fields
+        isbnField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        titleField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        authorField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        quantityField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+
+        // Initial validation
+        validateInput.run();
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == saveButtonType) {
                 try {
-                    int qty = Integer.parseInt(quantityField.getText());
-                    if (qty <=0) {
-                        showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Jumlah buku harus lebih dari 0.");
+                    String isbn = isbnField.getText().trim();
+                    String title = titleField.getText().trim();
+                    String author = authorField.getText().trim();
+                    int quantity = Integer.parseInt(quantityField.getText().trim());
+
+                    // Validasi ISBN unik
+                    if (DataManager.findBookByIsbn(isbn).isPresent()) {
+                        showAlert(Alert.AlertType.ERROR, "Error", "ISBN sudah terdaftar!");
                         return null;
                     }
-                    // Cek duplikasi ISBN
-                    if (DataManager.findBookByIsbn(isbnField.getText().trim()).isPresent()) {
-                        showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "ISBN sudah ada di sistem.");
-                        return null;
-                    }
-                    return new Book(isbnField.getText(), titleField.getText(), authorField.getText(), qty, qty);
+
+                    return new Book(isbn, title, author, quantity, quantity);
                 } catch (NumberFormatException e) {
-                    showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Jumlah harus berupa angka.");
+                    showAlert(Alert.AlertType.ERROR, "Error", "Format angka tidak valid!");
                     return null;
                 }
             }
@@ -281,8 +294,8 @@ public class AdminController {
         Optional<Book> result = dialog.showAndWait();
         result.ifPresent(book -> {
             DataManager.addBook(book);
-            loadBookData(); // Muat ulang data di tabel
-            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Buku berhasil ditambahkan.");
+            loadBookData();
+            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Buku berhasil ditambahkan!");
         });
     }
 
@@ -300,13 +313,22 @@ public class AdminController {
         dialog.initModality(Modality.WINDOW_MODAL);
         dialog.initOwner(MainApp.getPrimaryStage());
 
-        ButtonType saveButtonType = new ButtonType("Simpan Perubahan", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
+        // Add stylesheet
+        dialog.getDialogPane().getStylesheets().add(
+            getClass().getResource("/css/admin_styles.css").toExternalForm()
+        );
+        dialog.getDialogPane().getStyleClass().add("dialog-pane");
+
+        ButtonType saveButtonType = new ButtonType("Simpan", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Batal", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, cancelButtonType);
+
+        // Style the cancel button
+        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
+        cancelButton.getStyleClass().add("cancel-button");
 
         GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+        grid.getStyleClass().add("dialog-grid");
 
         TextField isbnField = new TextField(selectedBook.getIsbn());
         isbnField.setEditable(false); // ISBN tidak boleh diubah karena sebagai primary key
@@ -315,18 +337,17 @@ public class AdminController {
         TextField quantityField = new TextField(String.valueOf(selectedBook.getQuantity()));
         TextField availableQuantityField = new TextField(String.valueOf(selectedBook.getAvailableQuantity()));
 
-
-        grid.add(new Label("ISBN:"), 0, 0);
+        // Add icons to labels
+        grid.add(new Label("📚 ISBN:"), 0, 0);
         grid.add(isbnField, 1, 0);
-        grid.add(new Label("Judul:"), 0, 1);
+        grid.add(new Label("📖 Judul:"), 0, 1);
         grid.add(titleField, 1, 1);
-        grid.add(new Label("Penulis:"), 0, 2);
+        grid.add(new Label("✍ Penulis:"), 0, 2);
         grid.add(authorField, 1, 2);
-        grid.add(new Label("Jumlah Total:"), 0, 3);
+        grid.add(new Label("📦 Jumlah Total:"), 0, 3);
         grid.add(quantityField, 1, 3);
-        grid.add(new Label("Jumlah Tersedia:"), 0, 4);
+        grid.add(new Label("📥 Jumlah Tersedia:"), 0, 4);
         grid.add(availableQuantityField, 1, 4);
-
 
         dialog.getDialogPane().setContent(grid);
 
@@ -349,40 +370,30 @@ public class AdminController {
                 saveButton.setDisable(true);
             }
         };
-        titleField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        authorField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        quantityField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        availableQuantityField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        validateInput.run(); // Panggil sekali di awal
 
+        // Add listeners to all text fields
+        titleField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        authorField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        quantityField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        availableQuantityField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+
+        // Initial validation
+        validateInput.run();
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == saveButtonType) {
                 try {
-                    int qty = Integer.parseInt(quantityField.getText());
-                    int availableQty = Integer.parseInt(availableQuantityField.getText());
-
-                    if (qty < 0 || availableQty < 0) {
-                        showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Jumlah tidak boleh negatif.");
-                        return null;
-                    }
-                    if (availableQty > qty) {
-                        showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Jumlah tersedia tidak boleh melebihi jumlah total.");
-                        return null;
-                    }
-                    // Cek apakah ada buku yang sedang dipinjam melebihi jumlah tersedia yang baru
-                    int borrowedCount = selectedBook.getQuantity() - selectedBook.getAvailableQuantity();
-                    if (qty - borrowedCount < 0) {
-                        showAlert(Alert.AlertType.ERROR, "Input Tidak Valid",
-                                "Jumlah total baru (" + qty + ") tidak mencukupi untuk buku yang sedang dipinjam (" + borrowedCount + "). " +
-                                        "Setidaknya harus ada " + borrowedCount + " buku.");
-                        return null;
-                    }
-
-
-                    return new Book(selectedBook.getIsbn(), titleField.getText(), authorField.getText(), qty, availableQty);
+                    int totalQty = Integer.parseInt(quantityField.getText().trim());
+                    int availQty = Integer.parseInt(availableQuantityField.getText().trim());
+                    
+                    selectedBook.setTitle(titleField.getText().trim());
+                    selectedBook.setAuthor(authorField.getText().trim());
+                    selectedBook.setQuantity(totalQty);
+                    selectedBook.setAvailableQuantity(availQty);
+                    
+                    return selectedBook;
                 } catch (NumberFormatException e) {
-                    showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Jumlah harus berupa angka.");
+                    showAlert(Alert.AlertType.ERROR, "Error", "Format angka tidak valid!");
                     return null;
                 }
             }
@@ -390,10 +401,12 @@ public class AdminController {
         });
 
         Optional<Book> result = dialog.showAndWait();
-        result.ifPresent(updatedBook -> {
-            DataManager.updateBook(updatedBook);
+        result.ifPresent(book -> {
+            // Update the book in the database
+            DataManager.updateBook(book);
+            // Refresh the table
             loadBookData();
-            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Buku berhasil diperbarui.");
+            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Data buku berhasil diperbarui!");
         });
     }
 
@@ -406,22 +419,63 @@ public class AdminController {
         }
 
         // Cek apakah buku sedang dipinjam
-        if (selectedBook.getAvailableQuantity() < selectedBook.getQuantity()) {
-            showAlert(Alert.AlertType.ERROR, "Gagal Menghapus", "Buku '" + selectedBook.getTitle() + "' sedang dipinjam dan tidak dapat dihapus.");
+        if (selectedBook.getQuantity() != selectedBook.getAvailableQuantity()) {
+            showAlert(Alert.AlertType.ERROR, "Error", 
+                "Buku tidak dapat dihapus karena sedang dipinjam.\n" +
+                "Jumlah dipinjam: " + (selectedBook.getQuantity() - selectedBook.getAvailableQuantity()) + " buku");
             return;
         }
 
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Konfirmasi Hapus");
+        dialog.setHeaderText("Hapus Buku: " + selectedBook.getTitle());
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.initOwner(MainApp.getPrimaryStage());
 
-        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Konfirmasi Hapus");
-        confirmAlert.setHeaderText("Hapus Buku: " + selectedBook.getTitle());
-        confirmAlert.setContentText("Apakah Anda yakin ingin menghapus buku ini?");
+        // Add stylesheet
+        dialog.getDialogPane().getStylesheets().add(
+            getClass().getResource("/css/admin_styles.css").toExternalForm()
+        );
+        dialog.getDialogPane().getStyleClass().add("dialog-pane");
+        dialog.getDialogPane().getStyleClass().add("delete-book-dialog");
 
-        Optional<ButtonType> result = confirmAlert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        // Tambahkan konten konfirmasi
+        VBox content = new VBox(10);
+        content.setPadding(new Insets(20));
+        content.getStyleClass().add("dialog-content");
+
+        Label messageLabel = new Label("Apakah Anda yakin ingin menghapus buku ini?");
+        messageLabel.getStyleClass().add("dialog-message");
+        messageLabel.setWrapText(true);
+
+        Label detailLabel = new Label(
+            "ISBN: " + selectedBook.getIsbn() + "\n" +
+            "Judul: " + selectedBook.getTitle() + "\n" +
+            "Penulis: " + selectedBook.getAuthor() + "\n" +
+            "Jumlah: " + selectedBook.getQuantity() + " buku"
+        );
+        detailLabel.getStyleClass().add("dialog-details");
+        detailLabel.setWrapText(true);
+
+        content.getChildren().addAll(messageLabel, detailLabel);
+        dialog.getDialogPane().setContent(content);
+
+        // Tambahkan tombol
+        ButtonType confirmButtonType = new ButtonType("Hapus", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Batal", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, cancelButtonType);
+
+        // Style the buttons
+        Button confirmButton = (Button) dialog.getDialogPane().lookupButton(confirmButtonType);
+        confirmButton.getStyleClass().add("delete-button");
+        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
+        cancelButton.getStyleClass().add("cancel-button");
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == confirmButtonType) {
             DataManager.deleteBook(selectedBook.getIsbn());
             loadBookData();
-            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Buku berhasil dihapus.");
+            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Buku berhasil dihapus!");
         }
     }
 
@@ -450,13 +504,52 @@ public class AdminController {
             return;
         }
 
-        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Konfirmasi Pengembalian");
-        confirmAlert.setHeaderText("Proses Pengembalian Buku: " + selectedTransaction.getBookTitle());
-        confirmAlert.setContentText("Apakah Anda yakin ingin memproses pengembalian buku ini?");
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Konfirmasi Pengembalian");
+        dialog.setHeaderText("Proses Pengembalian Buku: " + selectedTransaction.getBookTitle());
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.initOwner(MainApp.getPrimaryStage());
 
-        Optional<ButtonType> result = confirmAlert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        // Add stylesheet
+        dialog.getDialogPane().getStylesheets().add(
+            getClass().getResource("/css/admin_styles.css").toExternalForm()
+        );
+        dialog.getDialogPane().getStyleClass().add("dialog-pane");
+
+        // Tambahkan konten konfirmasi
+        VBox content = new VBox(10);
+        content.setPadding(new Insets(20));
+        content.getStyleClass().add("dialog-content");
+
+        Label messageLabel = new Label("Apakah Anda yakin ingin memproses pengembalian buku ini?");
+        messageLabel.getStyleClass().add("dialog-message");
+        messageLabel.setWrapText(true);
+
+        Label detailLabel = new Label(
+            "Judul Buku: " + selectedTransaction.getBookTitle() + "\n" +
+            "Peminjam: " + selectedTransaction.getMemberName() + "\n" +
+            "Tanggal Pinjam: " + selectedTransaction.getBorrowDate() + "\n" +
+            "Tanggal Kembali: " + selectedTransaction.getReturnDate()
+        );
+        detailLabel.getStyleClass().add("dialog-details");
+        detailLabel.setWrapText(true);
+
+        content.getChildren().addAll(messageLabel, detailLabel);
+        dialog.getDialogPane().setContent(content);
+
+        // Tambahkan tombol
+        ButtonType confirmButtonType = new ButtonType("Proses", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Batal", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, cancelButtonType);
+
+        // Style the buttons
+        Button confirmButton = (Button) dialog.getDialogPane().lookupButton(confirmButtonType);
+        confirmButton.getStyleClass().add("confirm-button");
+        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
+        cancelButton.getStyleClass().add("cancel-button");
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == confirmButtonType) {
             Transaction returnedTransaction = DataManager.returnBook(selectedTransaction.getTransactionId());
             if (returnedTransaction != null) {
                 loadBorrowedTransactionsData(); // Muat ulang data transaksi yang sedang dipinjam
@@ -573,44 +666,54 @@ public class AdminController {
     private void handleAddMember() {
         Dialog<Member> dialog = new Dialog<>();
         dialog.setTitle("Tambah Member Baru");
-        dialog.setHeaderText("Masukkan data member baru:");
-        dialog.initModality(javafx.stage.Modality.WINDOW_MODAL);
-        dialog.initOwner(com.example.library.MainApp.getPrimaryStage());
+        dialog.setHeaderText("Masukkan detail member baru");
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.initOwner(MainApp.getPrimaryStage());
+
+        // Add stylesheet
+        dialog.getDialogPane().getStylesheets().add(
+            getClass().getResource("/css/admin_styles.css").toExternalForm()
+        );
+        dialog.getDialogPane().getStyleClass().add("dialog-pane");
 
         ButtonType saveButtonType = new ButtonType("Simpan", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
+        ButtonType cancelButtonType = new ButtonType("Batal", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, cancelButtonType);
+
+        // Style the cancel button
+        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
+        cancelButton.getStyleClass().add("cancel-button");
 
         GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+        grid.getStyleClass().add("dialog-grid");
 
         TextField idField = new TextField();
-        idField.setPromptText("ID Member");
+        idField.setPromptText("Masukkan ID Member");
         TextField nameField = new TextField();
-        nameField.setPromptText("Nama Lengkap");
+        nameField.setPromptText("Masukkan nama lengkap");
         TextField majorField = new TextField();
-        majorField.setPromptText("Jurusan");
+        majorField.setPromptText("Masukkan jurusan");
         TextField emailField = new TextField();
-        emailField.setPromptText("Email");
+        emailField.setPromptText("Masukkan email");
         PasswordField passwordField = new PasswordField();
-        passwordField.setPromptText("Password");
+        passwordField.setPromptText("Masukkan password");
 
-        grid.add(new Label("ID Member:"), 0, 0);
+        // Add icons to labels
+        grid.add(new Label("👤 ID Member:"), 0, 0);
         grid.add(idField, 1, 0);
-        grid.add(new Label("Nama Lengkap:"), 0, 1);
+        grid.add(new Label("👤 Nama:"), 0, 1);
         grid.add(nameField, 1, 1);
-        grid.add(new Label("Jurusan:"), 0, 2);
+        grid.add(new Label("🎓 Jurusan:"), 0, 2);
         grid.add(majorField, 1, 2);
-        grid.add(new Label("Email:"), 0, 3);
+        grid.add(new Label("✉ Email:"), 0, 3);
         grid.add(emailField, 1, 3);
-        grid.add(new Label("Password:"), 0, 4);
+        grid.add(new Label("🔒 Password:"), 0, 4);
         grid.add(passwordField, 1, 4);
 
         dialog.getDialogPane().setContent(grid);
 
+        // Validasi input sebelum tombol Simpan diaktifkan
         javafx.scene.Node saveButton = dialog.getDialogPane().lookupButton(saveButtonType);
-        saveButton.setDisable(true);
         Runnable validateInput = () -> {
             boolean disabled = idField.getText().trim().isEmpty() ||
                     nameField.getText().trim().isEmpty() ||
@@ -619,11 +722,15 @@ public class AdminController {
                     passwordField.getText().trim().isEmpty();
             saveButton.setDisable(disabled);
         };
-        idField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        nameField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        majorField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        emailField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
-        passwordField.textProperty().addListener((obs, oldV, newV) -> validateInput.run());
+
+        // Add listeners to all text fields
+        idField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        nameField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        majorField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        emailField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        passwordField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+
+        // Initial validation
         validateInput.run();
 
         dialog.setResultConverter(dialogButton -> {
@@ -633,75 +740,101 @@ public class AdminController {
                 String major = majorField.getText().trim();
                 String email = emailField.getText().trim();
                 String password = passwordField.getText().trim();
-                // Validasi format email
-                if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-                    showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Format email tidak valid.");
-                    return null;
-                }
+
                 // Validasi ID unik
-                if (com.example.library.data.DataManager.isMemberIdExists(id)) {
-                    showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "ID Member sudah terdaftar.");
+                if (DataManager.findMemberById(id).isPresent()) {
+                    showAlert(Alert.AlertType.ERROR, "Error", "ID Member sudah terdaftar!");
                     return null;
                 }
+
                 // Validasi email unik
-                if (com.example.library.data.DataManager.isEmailExists(email)) {
-                    showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Email sudah terdaftar.");
+                if (DataManager.findMemberByEmail(email).isPresent()) {
+                    showAlert(Alert.AlertType.ERROR, "Error", "Email sudah terdaftar!");
                     return null;
                 }
-                return new com.example.library.model.Member(id, name, major, email, password);
+
+                return new Member(id, name, major, email, password);
             }
             return null;
         });
 
-        Optional<com.example.library.model.Member> result = dialog.showAndWait();
+        Optional<Member> result = dialog.showAndWait();
         result.ifPresent(member -> {
-            com.example.library.data.DataManager.registerMember(member);
-            memberList.setAll(com.example.library.data.DataManager.loadMembers());
-            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Member baru berhasil ditambahkan.");
+            DataManager.registerMember(member);
+            memberList.setAll(DataManager.loadMembers());
+            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Member berhasil ditambahkan!");
         });
     }
 
     @FXML
     private void handleEditMember() {
-        Member selected = memberTableView.getSelectionModel().getSelectedItem();
-        if (selected == null) {
+        Member selectedMember = memberTableView.getSelectionModel().getSelectedItem();
+        if (selectedMember == null) {
             showAlert(Alert.AlertType.WARNING, "Peringatan", "Pilih member yang ingin diedit.");
             return;
         }
+
         Dialog<Member> dialog = new Dialog<>();
         dialog.setTitle("Edit Member");
-        dialog.setHeaderText("Edit data member:");
-        dialog.initModality(javafx.stage.Modality.WINDOW_MODAL);
-        dialog.initOwner(com.example.library.MainApp.getPrimaryStage());
+        dialog.setHeaderText("Edit detail member: " + selectedMember.getName());
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.initOwner(MainApp.getPrimaryStage());
 
-        ButtonType saveButtonType = new ButtonType("Simpan Perubahan", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
+        // Add stylesheet
+        dialog.getDialogPane().getStylesheets().add(
+            getClass().getResource("/css/admin_styles.css").toExternalForm()
+        );
+        dialog.getDialogPane().getStyleClass().add("dialog-pane");
+
+        ButtonType saveButtonType = new ButtonType("Simpan", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Batal", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, cancelButtonType);
+
+        // Style the cancel button
+        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
+        cancelButton.getStyleClass().add("cancel-button");
 
         GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+        grid.getStyleClass().add("dialog-grid");
 
-        TextField idField = new TextField(selected.getMemberId());
-        idField.setEditable(false);
-        TextField nameField = new TextField(selected.getName());
-        TextField majorField = new TextField(selected.getMajor());
-        TextField emailField = new TextField(selected.getEmail());
+        TextField idField = new TextField(selectedMember.getMemberId());
+        idField.setEditable(false); // ID tidak boleh diubah karena sebagai primary key
+        TextField nameField = new TextField(selectedMember.getName());
+        TextField majorField = new TextField(selectedMember.getMajor());
+        TextField emailField = new TextField(selectedMember.getEmail());
         PasswordField passwordField = new PasswordField();
-        passwordField.setPromptText("Password baru (opsional)");
+        passwordField.setPromptText("Kosongkan jika tidak ingin mengubah password");
 
-        grid.add(new Label("ID Member:"), 0, 0);
+        // Add icons to labels
+        grid.add(new Label("👤 ID Member:"), 0, 0);
         grid.add(idField, 1, 0);
-        grid.add(new Label("Nama Lengkap:"), 0, 1);
+        grid.add(new Label("👤 Nama:"), 0, 1);
         grid.add(nameField, 1, 1);
-        grid.add(new Label("Jurusan:"), 0, 2);
+        grid.add(new Label("🎓 Jurusan:"), 0, 2);
         grid.add(majorField, 1, 2);
-        grid.add(new Label("Email:"), 0, 3);
+        grid.add(new Label("✉ Email:"), 0, 3);
         grid.add(emailField, 1, 3);
-        grid.add(new Label("Password:"), 0, 4);
+        grid.add(new Label("🔒 Password:"), 0, 4);
         grid.add(passwordField, 1, 4);
 
         dialog.getDialogPane().setContent(grid);
+
+        // Validasi input sebelum tombol Simpan diaktifkan
+        javafx.scene.Node saveButton = dialog.getDialogPane().lookupButton(saveButtonType);
+        Runnable validateInput = () -> {
+            boolean disabled = nameField.getText().trim().isEmpty() ||
+                    majorField.getText().trim().isEmpty() ||
+                    emailField.getText().trim().isEmpty();
+            saveButton.setDisable(disabled);
+        };
+
+        // Add listeners to all text fields
+        nameField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        majorField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+        emailField.textProperty().addListener((obs, oldVal, newVal) -> validateInput.run());
+
+        // Initial validation
+        validateInput.run();
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == saveButtonType) {
@@ -709,59 +842,107 @@ public class AdminController {
                 String major = majorField.getText().trim();
                 String email = emailField.getText().trim();
                 String password = passwordField.getText().trim();
-                if (name.isEmpty() || major.isEmpty() || email.isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Semua field (kecuali password) harus diisi.");
+
+                // Validasi email unik (kecuali email member yang sedang diedit)
+                if (!email.equals(selectedMember.getEmail()) && DataManager.isEmailExists(email)) {
+                    showAlert(Alert.AlertType.ERROR, "Error", "Email sudah terdaftar!");
                     return null;
                 }
-                if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-                    showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Format email tidak valid.");
-                    return null;
+
+                selectedMember.setName(name);
+                selectedMember.setMajor(major);
+                selectedMember.setEmail(email);
+                if (!password.isEmpty()) {
+                    selectedMember.setPassword(password);
                 }
-                // Validasi email unik jika diubah
-                if (!email.equals(selected.getEmail()) && com.example.library.data.DataManager.isEmailExists(email)) {
-                    showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Email sudah terdaftar.");
-                    return null;
-                }
-                String newPassword = password.isEmpty() ? selected.getPassword() : password;
-                return new com.example.library.model.Member(selected.getMemberId(), name, major, email, newPassword);
+
+                return selectedMember;
             }
             return null;
         });
 
-        Optional<com.example.library.model.Member> result = dialog.showAndWait();
+        Optional<Member> result = dialog.showAndWait();
         result.ifPresent(member -> {
             // Update member di data
-            java.util.List<Member> all = com.example.library.data.DataManager.loadMembers();
+            java.util.List<Member> all = DataManager.loadMembers();
             for (int i = 0; i < all.size(); i++) {
                 if (all.get(i).getMemberId().equals(member.getMemberId())) {
                     all.set(i, member);
                     break;
                 }
             }
-            com.example.library.data.DataManager.saveMembers(all);
-            memberList.setAll(com.example.library.data.DataManager.loadMembers());
-            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Data member berhasil diperbarui.");
+            DataManager.saveMembers(all);
+            memberList.setAll(DataManager.loadMembers());
+            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Data member berhasil diperbarui!");
         });
     }
 
     @FXML
     private void handleDeleteMember() {
-        Member selected = memberTableView.getSelectionModel().getSelectedItem();
-        if (selected == null) {
+        Member selectedMember = memberTableView.getSelectionModel().getSelectedItem();
+        if (selectedMember == null) {
             showAlert(Alert.AlertType.WARNING, "Peringatan", "Pilih member yang ingin dihapus.");
             return;
         }
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle("Konfirmasi Hapus");
-        confirm.setHeaderText("Hapus Member: " + selected.getName());
-        confirm.setContentText("Apakah Anda yakin ingin menghapus member ini?");
-        Optional<ButtonType> result = confirm.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            java.util.List<Member> all = com.example.library.data.DataManager.loadMembers();
-            all.removeIf(m -> m.getMemberId().equals(selected.getMemberId()));
-            com.example.library.data.DataManager.saveMembers(all);
-            memberList.setAll(com.example.library.data.DataManager.loadMembers());
-            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Member berhasil dihapus.");
+
+        // Cek apakah member sedang meminjam buku
+        if (!DataManager.getBorrowedBooksByMember(selectedMember.getMemberId()).isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", 
+                "Member tidak dapat dihapus karena masih memiliki buku yang dipinjam.");
+            return;
+        }
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Konfirmasi Hapus");
+        dialog.setHeaderText("Hapus Member: " + selectedMember.getName());
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.initOwner(MainApp.getPrimaryStage());
+
+        // Add stylesheet
+        dialog.getDialogPane().getStylesheets().add(
+            getClass().getResource("/css/admin_styles.css").toExternalForm()
+        );
+        dialog.getDialogPane().getStyleClass().add("dialog-pane");
+
+        // Tambahkan konten konfirmasi
+        VBox content = new VBox(10);
+        content.setPadding(new Insets(20));
+        content.getStyleClass().add("dialog-content");
+
+        Label messageLabel = new Label("Apakah Anda yakin ingin menghapus member ini?");
+        messageLabel.getStyleClass().add("dialog-message");
+        messageLabel.setWrapText(true);
+
+        Label detailLabel = new Label(
+            "ID: " + selectedMember.getMemberId() + "\n" +
+            "Nama: " + selectedMember.getName() + "\n" +
+            "Jurusan: " + selectedMember.getMajor() + "\n" +
+            "Email: " + selectedMember.getEmail()
+        );
+        detailLabel.getStyleClass().add("dialog-details");
+        detailLabel.setWrapText(true);
+
+        content.getChildren().addAll(messageLabel, detailLabel);
+        dialog.getDialogPane().setContent(content);
+
+        // Tambahkan tombol
+        ButtonType confirmButtonType = new ButtonType("Hapus", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Batal", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, cancelButtonType);
+
+        // Style the buttons
+        Button confirmButton = (Button) dialog.getDialogPane().lookupButton(confirmButtonType);
+        confirmButton.getStyleClass().add("delete-button");
+        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
+        cancelButton.getStyleClass().add("cancel-button");
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == confirmButtonType) {
+            java.util.List<Member> all = DataManager.loadMembers();
+            all.removeIf(m -> m.getMemberId().equals(selectedMember.getMemberId()));
+            DataManager.saveMembers(all);
+            memberList.setAll(DataManager.loadMembers());
+            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Member berhasil dihapus!");
         }
     }
 

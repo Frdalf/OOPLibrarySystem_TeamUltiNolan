@@ -58,11 +58,17 @@ public class ResetPasswordController {
             return;
         }
 
-        // TODO: Implement password reset logic here
-        // If successful:
-        statusLabel.setText("Password berhasil direset!");
-        // Navigate back to login
-        handleBackToLogin();
+        // Implement password reset logic here
+        boolean success = com.example.library.data.DataManager.updateMemberPassword(email, newPassword);
+
+        if (success) {
+            statusLabel.setText("Password berhasil direset!");
+            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Password Anda berhasil direset!");
+            handleBackToLogin();
+        } else {
+            statusLabel.setText("Gagal mereset password. Email tidak ditemukan.");
+            showAlert(Alert.AlertType.ERROR, "Gagal", "Gagal mereset password. Silakan coba lagi.");
+        }
     }
 
     @FXML

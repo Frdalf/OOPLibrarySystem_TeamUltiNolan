@@ -22,7 +22,7 @@
                     <PasswordField fx:id="adminPasswordField" promptText="Password" style="-fx-font-size: 15px; -fx-background-radius: 8; -fx-pref-width: 280px; -fx-padding: 8;" />
                 </VBox>
                 <HBox alignment="CENTER_LEFT" spacing="60" style="-fx-padding: 0 0 0 2;">
-                    <Hyperlink text="Forgot password?" onAction="#handleForgotPassword" style="-fx-text-fill: #100c08 ; -fx-font-size: 13px;" />
+                    <Hyperlink text="Lupa password?" onAction="#handleForgotPassword" style="-fx-text-fill: #100c08 ; -fx-font-size: 13px;" />
                 </HBox>
                 <Button fx:id="loginButton" text="LOG IN" onAction="#handleLogin" style="-fx-font-size: 16px; -fx-background-color: linear-gradient(to right, #ffe259, #ffa751); -fx-text-fill: #102542; -fx-font-weight: bold; -fx-background-radius: 8; -fx-pref-width: 280px; -fx-padding: 10 0;" />
                 <Label fx:id="statusLabel" style="-fx-text-fill: #ffb3b3; -fx-font-size: 14px;" />

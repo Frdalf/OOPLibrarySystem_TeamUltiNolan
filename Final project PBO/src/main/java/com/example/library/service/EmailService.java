@@ -46,7 +46,7 @@ public class EmailService {
                 "Kode ini akan kadaluarsa dalam 5 menit.\n" +
                 "Jika Anda tidak meminta reset password, abaikan email ini.\n\n" +
                 "Salam,\n" +
-                "Tim Perpustakaan", 
+                "Tim Ulti Nolan",
                 verificationCode
             );
             

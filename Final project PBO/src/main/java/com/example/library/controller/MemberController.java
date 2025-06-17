@@ -21,12 +21,11 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 
 public class MemberController {
 
@@ -34,9 +33,9 @@ public class MemberController {
 
     @FXML private Label welcomeLabel;
     @FXML private Label memberIdDisplayLabel;
-    @FXML private TabPane memberTabPane;
-    @FXML private Tab borrowBooksTab;
-    @FXML private Tab myBooksTab;
+    @FXML private VBox mainContentContainer;
+    @FXML private VBox borrowBooksContent;
+    @FXML private VBox myBooksContent;
 
     // Komponen Tab Cari & Pinjam Buku
     @FXML private TableView<Book> availableBooksTableView;
@@ -171,13 +170,15 @@ public class MemberController {
 
     @FXML
     private void showBorrowBooksTab() {
-        memberTabPane.getSelectionModel().select(borrowBooksTab);
+        borrowBooksContent.setVisible(true);
+        myBooksContent.setVisible(false);
         loadAvailableBookData(); // Selalu muat data terbaru
     }
 
     @FXML
     private void showMyBooksTab() {
-        memberTabPane.getSelectionModel().select(myBooksTab);
+        borrowBooksContent.setVisible(false);
+        myBooksContent.setVisible(true);
         loadMyBorrowedBooks(); // Selalu muat data terbaru
     }
 
