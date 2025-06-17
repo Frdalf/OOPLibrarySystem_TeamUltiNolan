@@ -146,7 +146,7 @@
                         <TableColumn fx:id="transNoColReturn" maxWidth="65" minWidth="65" prefWidth="65" text="No" />
                         <TableColumn fx:id="transIdReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="ID Transaksi" />
                         <TableColumn fx:id="memberIdReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="ID Member" />
-                        <TableColumn fx:id="bookIsbnReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="ISBN Buku" />
+                        <TableColumn fx:id="bookIsbnReturnColumn" maxWidth="130" minWidth="130" prefWidth="130" text="ISBN Buku" />
                         <TableColumn fx:id="bookTitleReturnColumn" minWidth="150" prefWidth="150" text="Judul Buku" />
                         <TableColumn fx:id="borrowDateReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="Tgl Pinjam" />
                         <TableColumn fx:id="dueDateReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="Tgl Kembali" />
