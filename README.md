@@ -11,12 +11,22 @@
 
 ## Pepustakaan kampus 📖
 ## Deskripsi 📜
-Project ini merupakan sistem informasi perpustakaan kampus yang dibangun menggunakan bahasa pemrograman **Java** dengan antarmuka **JavaFX**.  
-Fungsionalitas utama meliputi:
-- Manajemen data buku & anggota (CRUD)
-- Proses peminjaman dan pengembalian buku
-- Validasi data, perhitungan denda
-- Antarmuka GUI interaktif berbasis JavaFX
+OOPLibrarySystem_TeamUltiNolan adalah aplikasi desktop berbasis Java yang dirancang untuk membantu proses manajemen perpustakaan kampus secara digital. Sistem ini dibangun menggunakan teknologi Java dan JavaFX, serta menerapkan pola arsitektur Model View Controller (MVC) untuk menjaga pemisahan logika dan tampilan.
+Fungsionalitas Utama:
+- 📚 Manajemen Data Buku dan Anggota (CRUD)
+Tambah, ubah, hapus, dan cari data buku serta anggota perpustakaan.
+- 📥 Peminjaman Buku
+Anggota dapat meminjam buku dengan durasi maksimal 7 hari. Transaksi dicatat otomatis ke dalam sistem.
+- 📤 Pengembalian Buku & Perhitungan Denda
+Sistem menghitung denda secara otomatis berdasarkan keterlambatan pengembalian.
+- 🔎 Pencarian Buku
+Pencarian interaktif berdasarkan ISBN, judul, atau nama pengarang.
+- 🔐 Login dan Registrasi Pengguna
+Sistem mendukung login sebagai admin maupun anggota, serta form registrasi pengguna baru.
+- ⚠️ Validasi Input dan Notifikasi GUI
+Menggunakan dialog JavaFX (Alert) untuk memberikan umpan balik saat terjadi kesalahan atau saat aksi berhasil dilakukan.
+- 📄 Penyimpanan Data Menggunakan CSV
+Seluruh data disimpan secara lokal dalam file .csv, dan dibaca kembali saat aplikasi dijalankan ulang.
 Project ini disusun untuk menyelesaikan **"Final Project Mata Kuliah Pemrograman Berorientasi Objek (PBO)"**
 ## 🧩 Struktur Folder
 - /src → Kode sumber (Java).
