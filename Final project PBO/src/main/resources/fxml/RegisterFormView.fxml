@@ -11,15 +11,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<StackPane styleClass="root-pane" alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.controller.RegisterFormController">
+<StackPane alignment="CENTER" styleClass="root-pane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.controller.RegisterFormController">
     <stylesheets>
         <URL value="@../css/register_styles.css" />
     </stylesheets>
 
     <children>
-        <VBox fx:id="formContainer" alignment="CENTER" maxWidth="480.0" maxHeight="600.0" spacing="20.0" styleClass="form-container">
+        <VBox fx:id="formContainer" alignment="CENTER" maxHeight="600.0" maxWidth="480.0" spacing="20.0" styleClass="form-container">
             <children>
                 <Label styleClass="title-label" text="Pendaftaran Anggota Perpustakaan" />
 
@@ -45,7 +44,7 @@
                         <Label text="🎓 Jurusan" GridPane.rowIndex="2" />
                         <TextField fx:id="majorField" promptText="Nama Jurusan" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                        <Label text="✉️ Email" GridPane.rowIndex="3" />
+                        <Label text="✉ Email" GridPane.rowIndex="3" />
                         <TextField fx:id="emailField" promptText="Masukkan Email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                         <Label text="🔒 Password" GridPane.rowIndex="4" />

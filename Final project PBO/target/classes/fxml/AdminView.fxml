@@ -1,90 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<?import java.lang.String?>
-<BorderPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ecf0f1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.controller.AdminController">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ecf0f1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.controller.AdminController">
     <left>
-        <VBox spacing="15.0" style="-fx-background-color: linear-gradient(to bottom, #00476a, #00a6ff); -fx-padding: 20;" prefWidth="220">
+        <VBox prefWidth="220" spacing="15.0" style="-fx-background-color: linear-gradient(to bottom, #87cefa, #ffffff); -fx-padding: 20;">
             <children>
-                <Label text="Administrator" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                <Label text="Online" style="-fx-text-fill: #2ecc71; -fx-font-size: 13px;"/>
-                <Separator prefHeight="20"/>
-                <Button text="Dashboard" onAction="#showDashboard" styleClass="menu-button" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.3); -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;"/>
-                <Button text="Manajemen Buku" onAction="#showBookManagement" styleClass="menu-button" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.3); -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;"/>
-                <Button text="Proses Pengembalian" onAction="#showReturnProcessing" styleClass="menu-button" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.3); -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;"/>
-                <Button text="Manage User" onAction="#showMasterData" styleClass="menu-button" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.3); -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;"/>
-                <Separator prefHeight="30"/>
-                <Button text="Logout" onAction="#handleLogout" styleClass="logout-button" prefWidth="Infinity" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 15; -fx-cursor: hand; -fx-border-color: transparent; -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);"/>
-                <Region VBox.vgrow="ALWAYS"/>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="Administrator" />
+                <Label style="-fx-text-fill: #2ecc71; -fx-font-size: 13px;" text="Online" />
+                <Separator prefHeight="3.0" prefWidth="180.0" style="-fx-background-color: black;" />
+                <Button onAction="#showDashboard" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: black; -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;" styleClass="menu-button" text="Dashboard" />
+                <Button onAction="#showBookManagement" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: black; -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;" styleClass="menu-button" text="Manajemen Buku" />
+                <Button onAction="#showReturnProcessing" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: black; -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;" styleClass="menu-button" text="Proses Pengembalian" />
+                <Button onAction="#showMasterData" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: black; -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;" styleClass="menu-button" text="Manage User" />
+                <Separator prefHeight="3.0" prefWidth="180.0" style="-fx-background-color: black;" />
+                <Button onAction="#handleLogout" prefWidth="Infinity" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 15; -fx-cursor: hand; -fx-border-color: transparent; -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);" styleClass="logout-button" text="Logout" />
+                <Region VBox.vgrow="ALWAYS" />
             </children>
             <padding>
-                <Insets top="10"/>
+                <Insets top="10" />
             </padding>
         </VBox>
     </left>
     <center>
         <StackPane fx:id="mainContentPane" styleClass="light-mode">
             <!-- Dashboard Content -->
-            <VBox fx:id="dashboardPane" spacing="20" alignment="TOP_CENTER" style="-fx-padding: 30;">
-                <HBox spacing="20" alignment="CENTER">
-                    <HBox spacing="5" alignment="CENTER" style="-fx-background-color: #fff; -fx-padding: 12 20; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-                        <Label text="📚" style="-fx-font-size: 18px;"/>
-                        <Label text="JUMLAH BUKU" style="-fx-font-size: 13px; -fx-text-fill: #666;"/>
-                        <Label fx:id="totalBooksLabel" text="0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2980b9; -fx-padding: 0 0 0 8;"/>
+            <VBox fx:id="dashboardPane" alignment="TOP_CENTER" spacing="20" style="-fx-padding: 30;">
+                <HBox alignment="CENTER" spacing="20">
+                    <HBox alignment="CENTER" spacing="5" style="-fx-background-color: #fff; -fx-padding: 12 20; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label style="-fx-font-size: 18px;" text="📚" />
+                        <Label style="-fx-font-size: 13px; -fx-text-fill: #666;" text="JUMLAH BUKU" />
+                        <Label fx:id="totalBooksLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #87cefa; -fx-padding: 0 0 0 8;" text="0" />
                     </HBox>
-                    <HBox spacing="5" alignment="CENTER" style="-fx-background-color: #fff; -fx-padding: 12 20; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-                        <Label text="💰" style="-fx-font-size: 18px;"/>
-                        <Label text="JUMLAH DENDA" style="-fx-font-size: 13px; -fx-text-fill: #666;"/>
-                        <Label fx:id="totalFinesLabel" text="Rp 0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #c0392b; -fx-padding: 0 0 0 8;"/>
+                    <HBox alignment="CENTER" spacing="5" style="-fx-background-color: #fff; -fx-padding: 12 20; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label style="-fx-font-size: 18px;" text="💰" />
+                        <Label style="-fx-font-size: 13px; -fx-text-fill: #666;" text="JUMLAH DENDA" />
+                        <Label fx:id="totalFinesLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #c0392b; -fx-padding: 0 0 0 8;" text="Rp 0" />
                     </HBox>
-                    <HBox spacing="5" alignment="CENTER" style="-fx-background-color: #fff; -fx-padding: 12 20; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-                        <Label text="📖" style="-fx-font-size: 18px;"/>
-                        <Label text="JUMLAH PEMINJAMAN" style="-fx-font-size: 13px; -fx-text-fill: #666;"/>
-                        <Label fx:id="totalBorrowedLabel" text="0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #27ae60; -fx-padding: 0 0 0 8;"/>
+                    <HBox alignment="CENTER" spacing="5" style="-fx-background-color: #fff; -fx-padding: 12 20; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label style="-fx-font-size: 18px;" text="📖" />
+                        <Label style="-fx-font-size: 13px; -fx-text-fill: #666;" text="JUMLAH PEMINJAMAN" />
+                        <Label fx:id="totalBorrowedLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #27ae60; -fx-padding: 0 0 0 8;" text="0" />
                     </HBox>
-                    <HBox spacing="5" alignment="CENTER" style="-fx-background-color: #fff; -fx-padding: 12 20; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-                        <Label text="📥" style="-fx-font-size: 18px;"/>
-                        <Label text="JUMLAH PENGEMBALIAN" style="-fx-font-size: 13px; -fx-text-fill: #666;"/>
-                        <Label fx:id="totalReturnedLabel" text="0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #f39c12; -fx-padding: 0 0 0 8;"/>
+                    <HBox alignment="CENTER" spacing="5" style="-fx-background-color: #fff; -fx-padding: 12 20; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label style="-fx-font-size: 18px;" text="📥" />
+                        <Label style="-fx-font-size: 13px; -fx-text-fill: #666;" text="JUMLAH PENGEMBALIAN" />
+                        <Label fx:id="totalReturnedLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #f39c12; -fx-padding: 0 0 0 8;" text="0" />
                     </HBox>
                 </HBox>
-                <Label text="Data Transaksi Terkini" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Bulan:" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;"/>
-                    <ComboBox fx:id="bulanComboBox" prefWidth="120" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 13px;"/>
-                    <Label text="Tahun:" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;"/>
-                    <ComboBox fx:id="tahunComboBox" prefWidth="100" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 13px;"/>
-                    <Button text="Filter" onAction="#filterTransaksiDashboard" styleClass="button-blue"/>
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Data Transaksi Terkini" />
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Bulan:" />
+                    <ComboBox fx:id="bulanComboBox" prefWidth="120" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 13px;" />
+                    <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Tahun:" />
+                    <ComboBox fx:id="tahunComboBox" prefWidth="100" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 13px;" />
+                    <Button onAction="#filterTransaksiDashboard" styleClass="button-blue" text="Filter" />
                 </HBox>
-                <TableView fx:id="recentTransactionsTable" prefHeight="250.0" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #ffffff; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.0), 10, 0, 0, 2);">
+                <TableView fx:id="recentTransactionsTable" prefHeight="250.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #ffffff; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.0), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="transNoCol" text="No" prefWidth="65" minWidth="65" maxWidth="65"/>
-                        <TableColumn fx:id="transRegNoCol" text="No Reg" prefWidth="90" minWidth="90" maxWidth="90"/>
-                        <TableColumn fx:id="transMemberNameCol" text="Nama Peminjam" prefWidth="130" minWidth="130"/>
-                        <TableColumn fx:id="transBookTitleCol" text="Judul Buku" prefWidth="160" minWidth="160"/>
-                        <TableColumn fx:id="transBorrowDateCol" text="Tgl Pinjam" prefWidth="110" minWidth="110" maxWidth="110"/>
-                        <TableColumn fx:id="transReturnDateCol" text="Tgl Kembali" prefWidth="120" minWidth="120" maxWidth="120"/>
-                        <TableColumn fx:id="transStatusCol" text="Status" prefWidth="90" minWidth="90" maxWidth="90"/>
-                        <TableColumn fx:id="transFineCol" text="Denda" prefWidth="90" minWidth="90" maxWidth="90"/>
+                        <TableColumn fx:id="transNoCol" maxWidth="65" minWidth="65" prefWidth="65" text="No" />
+                        <TableColumn fx:id="transRegNoCol" maxWidth="90" minWidth="90" prefWidth="90" text="No Reg" />
+                        <TableColumn fx:id="transMemberNameCol" minWidth="130" prefWidth="130" text="Nama Peminjam" />
+                        <TableColumn fx:id="transBookTitleCol" minWidth="160" prefWidth="160" text="Judul Buku" />
+                        <TableColumn fx:id="transBorrowDateCol" maxWidth="110" minWidth="110" prefWidth="110" text="Tgl Pinjam" />
+                        <TableColumn fx:id="transReturnDateCol" maxWidth="120" minWidth="120" prefWidth="120" text="Tgl Kembali" />
+                        <TableColumn fx:id="transStatusCol" maxWidth="90" minWidth="90" prefWidth="90" text="Status" />
+                        <TableColumn fx:id="transFineCol" maxWidth="90" minWidth="90" prefWidth="90" text="Denda" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -92,20 +86,20 @@
                 </TableView>
             </VBox>
             <!-- Master Data Content -->
-            <VBox fx:id="masterDataPane" spacing="20" alignment="TOP_CENTER" style="-fx-padding: 30;" visible="false">
-                <Label text="Manage User" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <VBox fx:id="masterDataPane" alignment="TOP_CENTER" spacing="20" style="-fx-padding: 30;" visible="false">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Manage User" />
                 <HBox spacing="10">
-                    <Button text="Tambah Member" onAction="#handleAddMember" styleClass="button-green"/>
-                    <Button text="Edit Member" onAction="#handleEditMember" styleClass="button-orange"/>
-                    <Button text="Hapus Member" onAction="#handleDeleteMember" styleClass="button-red"/>
+                    <Button onAction="#handleAddMember" styleClass="button-green" text="Tambah Member" />
+                    <Button onAction="#handleEditMember" styleClass="button-orange" text="Edit Member" />
+                    <Button onAction="#handleDeleteMember" styleClass="button-red" text="Hapus Member" />
                 </HBox>
-                <TableView fx:id="memberTableView" prefHeight="300.0" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                <TableView fx:id="memberTableView" prefHeight="300.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="memberNoCol" text="No" prefWidth="65" minWidth="65" maxWidth="65"/>
-                        <TableColumn fx:id="memberIdCol" text="No Reg" prefWidth="90" minWidth="90" maxWidth="90"/>
-                        <TableColumn fx:id="memberNameCol" text="Nama" prefWidth="150" minWidth="150"/>
-                        <TableColumn fx:id="memberMajorCol" text="Jurusan" prefWidth="120" minWidth="120"/>
-                        <TableColumn fx:id="memberEmailCol" text="Email" prefWidth="180" minWidth="180"/>
+                        <TableColumn fx:id="memberNoCol" maxWidth="65" minWidth="65" prefWidth="65" text="No" />
+                        <TableColumn fx:id="memberIdCol" maxWidth="90" minWidth="90" prefWidth="90" text="No Reg" />
+                        <TableColumn fx:id="memberNameCol" minWidth="150" prefWidth="150" text="Nama" />
+                        <TableColumn fx:id="memberMajorCol" minWidth="120" prefWidth="120" text="Jurusan" />
+                        <TableColumn fx:id="memberEmailCol" minWidth="180" prefWidth="180" text="Email" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -113,56 +107,56 @@
                 </TableView>
             </VBox>
             <!-- Book Management Content -->
-            <VBox fx:id="bookManagementPane" spacing="20" alignment="TOP_CENTER" style="-fx-padding: 30;" visible="false">
-                <Label text="Manajemen Buku" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <TextField fx:id="searchBookField" promptText="Cari berdasarkan Judul atau ISBN" HBox.hgrow="ALWAYS" style="-fx-font-size: 14px;"/>
-                    <Button text="Cari" onAction="#handleSearchBook" styleClass="button-blue"/>
-                    <Button text="Reset" onAction="#resetBookSearch" styleClass="button-grey"/>
+            <VBox fx:id="bookManagementPane" alignment="TOP_CENTER" spacing="20" style="-fx-padding: 30;" visible="false">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Manajemen Buku" />
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <TextField fx:id="searchBookField" promptText="Cari berdasarkan Judul atau ISBN" style="-fx-font-size: 14px;" HBox.hgrow="ALWAYS" />
+                    <Button onAction="#handleSearchBook" styleClass="button-blue" text="Cari" />
+                    <Button onAction="#resetBookSearch" styleClass="button-grey" text="Reset" />
                 </HBox>
-                <TableView fx:id="bookTableView" prefHeight="300.0" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                <TableView fx:id="bookTableView" prefHeight="300.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="bookNoCol" text="No" prefWidth="65" minWidth="65" maxWidth="65"/>
-                        <TableColumn fx:id="isbnColumn" prefWidth="120.0" minWidth="120" maxWidth="120" text="ISBN"/>
-                        <TableColumn fx:id="titleColumn" prefWidth="200.0" minWidth="200" text="Judul"/>
-                        <TableColumn fx:id="authorColumn" prefWidth="150.0" minWidth="150" text="Penulis"/>
-                        <TableColumn fx:id="quantityColumn" prefWidth="80" minWidth="80" maxWidth="80" text="Total"/>
-                        <TableColumn fx:id="availableQuantityColumn" prefWidth="100" minWidth="100" maxWidth="100" text="Tersedia"/>
+                        <TableColumn fx:id="bookNoCol" maxWidth="65" minWidth="65" prefWidth="65" text="No" />
+                        <TableColumn fx:id="isbnColumn" maxWidth="120" minWidth="120" prefWidth="120.0" text="ISBN" />
+                        <TableColumn fx:id="titleColumn" minWidth="200" prefWidth="200.0" text="Judul" />
+                        <TableColumn fx:id="authorColumn" minWidth="150" prefWidth="150.0" text="Penulis" />
+                        <TableColumn fx:id="quantityColumn" maxWidth="80" minWidth="80" prefWidth="80" text="Total" />
+                        <TableColumn fx:id="availableQuantityColumn" maxWidth="100" minWidth="100" prefWidth="100" text="Tersedia" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
-                <HBox spacing="10.0" alignment="CENTER_RIGHT">
-                    <Button text="Tambah Buku" onAction="#handleAddBook" style="-fx-background-color: linear-gradient(to bottom, #2ecc71, #27ae60); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 10 20; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2); -fx-transition: all 0.3s ease; -fx-background-insets: 0; -fx-border-color: transparent; -fx-border-width: 0;"/>
-                    <Button text="Edit Buku" onAction="#handleEditBook" style="-fx-background-color: linear-gradient(to bottom, #f39c12, #d35400); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 10 20; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2); -fx-transition: all 0.3s ease; -fx-background-insets: 0; -fx-border-color: transparent; -fx-border-width: 0;"/>
-                    <Button text="Hapus Buku" onAction="#handleDeleteBook" style="-fx-background-color: linear-gradient(to bottom, #e74c3c, #c0392b); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 10 20; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2); -fx-transition: all 0.3s ease; -fx-background-insets: 0; -fx-border-color: transparent; -fx-border-width: 0;"/>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <Button onAction="#handleAddBook" style="-fx-background-color: linear-gradient(to bottom, #2ecc71, #27ae60); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 10 20; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2); -fx-transition: all 0.3s ease; -fx-background-insets: 0; -fx-border-color: transparent; -fx-border-width: 0;" text="Tambah Buku" />
+                    <Button onAction="#handleEditBook" style="-fx-background-color: linear-gradient(to bottom, #f39c12, #d35400); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 10 20; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2); -fx-transition: all 0.3s ease; -fx-background-insets: 0; -fx-border-color: transparent; -fx-border-width: 0;" text="Edit Buku" />
+                    <Button onAction="#handleDeleteBook" style="-fx-background-color: linear-gradient(to bottom, #e74c3c, #c0392b); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 10 20; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2); -fx-transition: all 0.3s ease; -fx-background-insets: 0; -fx-border-color: transparent; -fx-border-width: 0;" text="Hapus Buku" />
                 </HBox>
             </VBox>
             <!-- Return Processing Content -->
-            <VBox fx:id="returnProcessingPane" spacing="20" alignment="TOP_CENTER" style="-fx-padding: 30;" visible="false">
-                <Label text="Proses Pengembalian Buku" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <TextField fx:id="searchTransactionField" promptText="Cari Transaksi: ID, Member ID, Judul Buku" HBox.hgrow="ALWAYS" style="-fx-font-size: 14px;"/>
-                    <Button text="Cari" onAction="#handleSearchTransactionToReturn" styleClass="button-blue"/>
-                    <Button text="Reset" onAction="#resetTransactionSearch" styleClass="button-grey"/>
+            <VBox fx:id="returnProcessingPane" alignment="TOP_CENTER" spacing="20" style="-fx-padding: 30;" visible="false">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Proses Pengembalian Buku" />
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <TextField fx:id="searchTransactionField" promptText="Cari Transaksi: ID, Member ID, Judul Buku" style="-fx-font-size: 14px;" HBox.hgrow="ALWAYS" />
+                    <Button onAction="#handleSearchTransactionToReturn" styleClass="button-blue" text="Cari" />
+                    <Button onAction="#resetTransactionSearch" styleClass="button-grey" text="Reset" />
                 </HBox>
-                <TableView fx:id="borrowedBooksTableView" prefHeight="200.0" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                <TableView fx:id="borrowedBooksTableView" prefHeight="200.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="transNoColReturn" text="No" prefWidth="65" minWidth="65" maxWidth="65"/>
-                        <TableColumn fx:id="transIdReturnColumn" prefWidth="120" minWidth="120" maxWidth="120" text="ID Transaksi"/>
-                        <TableColumn fx:id="memberIdReturnColumn" prefWidth="120" minWidth="120" maxWidth="120" text="ID Member"/>
-                        <TableColumn fx:id="bookIsbnReturnColumn" prefWidth="120" minWidth="120" maxWidth="120" text="ISBN Buku"/>
-                        <TableColumn fx:id="bookTitleReturnColumn" prefWidth="150" minWidth="150" text="Judul Buku"/>
-                        <TableColumn fx:id="borrowDateReturnColumn" prefWidth="120" minWidth="120" maxWidth="120" text="Tgl Pinjam"/>
-                        <TableColumn fx:id="dueDateReturnColumn" prefWidth="120" minWidth="120" maxWidth="120" text="Tgl Kembali"/>
+                        <TableColumn fx:id="transNoColReturn" maxWidth="65" minWidth="65" prefWidth="65" text="No" />
+                        <TableColumn fx:id="transIdReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="ID Transaksi" />
+                        <TableColumn fx:id="memberIdReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="ID Member" />
+                        <TableColumn fx:id="bookIsbnReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="ISBN Buku" />
+                        <TableColumn fx:id="bookTitleReturnColumn" minWidth="150" prefWidth="150" text="Judul Buku" />
+                        <TableColumn fx:id="borrowDateReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="Tgl Pinjam" />
+                        <TableColumn fx:id="dueDateReturnColumn" maxWidth="120" minWidth="120" prefWidth="120" text="Tgl Kembali" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
-                <HBox spacing="10" alignment="CENTER_RIGHT">
-                    <Button text="Proses Pengembalian Terpilih" onAction="#handleProcessReturn" styleClass="button-blue"/>
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Button onAction="#handleProcessReturn" styleClass="button-blue" text="Proses Pengembalian Terpilih" />
                 </HBox>
             </VBox>
         </StackPane>

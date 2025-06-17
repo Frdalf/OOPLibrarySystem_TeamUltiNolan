@@ -39,7 +39,7 @@
 }
 
 .table-view .column-header {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #87cefa;
     -fx-background-radius: 15 15 0 0;
     -fx-padding: 0;
     -fx-border-width: 0;
@@ -82,12 +82,12 @@
 }
 
 .light-mode .table-view {
-    -fx-background-color: #0066ff;
+    -fx-background-color: #87cefa;
     -fx-text-fill: #2c3e50;
 }
 
 .light-mode .table-view .column-header {
-    -fx-background-color: #0066ff;
+    -fx-background-color: #87cefa;
     -fx-text-fill: #2c3e50;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .light-mode .text-field {
-    -fx-background-color: #0066ff;
+    -fx-background-color: #87cefa;
     -fx-text-fill: #ffffff;
 }
 
