@@ -20,7 +20,7 @@
         <VBox prefWidth="220" spacing="15.0" style="-fx-background-color: linear-gradient(to bottom, #87cefa, #ffffff); -fx-padding: 20;">
             <children>
                 <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="Administrator" />
-                <Label style="-fx-text-fill: #2ecc71; -fx-font-size: 13px;" text="Online" />
+                <Label style="-fx-text-fill: #1c934f;  -fx-font-weight: bold; -fx-font-size: 13px;" text="Online" />
                 <Separator prefHeight="3.0" prefWidth="180.0" style="-fx-background-color: black;" />
                 <Button onAction="#showDashboard" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: black; -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;" styleClass="menu-button" text="Dashboard" />
                 <Button onAction="#showBookManagement" prefWidth="Infinity" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 12 20; -fx-cursor: hand; -fx-border-color: black; -fx-border-width: 1; -fx-background-insets: 0; -fx-effect: none; -fx-transition: all 0.3s ease;" styleClass="menu-button" text="Manajemen Buku" />
