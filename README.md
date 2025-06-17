@@ -1,4 +1,6 @@
 # OOPLibrarySystem_TeamUltiNolan
+> Final Project – Pemrograman Berbasis Objek (PBO)  
+> 📌 Universitas Muhammadiyah Malang • 2025  
 
 # Nama Anggota:
 | Nama                       | NIM                | Peran                             |
@@ -20,4 +22,4 @@ Project ini disusun untuk menyelesaikan **"Final Project Mata Kuliah Pemrograman
 - /src → Kode sumber (Java).
 - /data → Data CSV.
 - /docs → Dokumentasi teknis.
-- /presentation → File presentasi
+- /presentation → File presentasi.
