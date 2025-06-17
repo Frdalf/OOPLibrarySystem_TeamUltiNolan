@@ -1,15 +1,16 @@
 package com.example.library.controller;
 
+import java.io.IOException;
+
 import com.example.library.MainApp;
 import com.example.library.data.DataManager;
 import com.example.library.model.Member;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 
 public class RegisterFormController {
 
@@ -31,34 +32,45 @@ public class RegisterFormController {
         String name = nameField.getText().trim();
         String major = majorField.getText().trim();
         String email = emailField.getText().trim();
-        String password = passwordField.getText().trim();
+        String password = passwordField.getText();
 
         if (memberId.isEmpty() || name.isEmpty() || major.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Registrasi Gagal", "Semua field harus diisi.");
+            statusLabel.setText("Semua field harus diisi!");
+            statusLabel.setStyle("-fx-text-fill: #e74c3c;");
+            return;
+        }
+
+        if (password.length() < 6) {
+            statusLabel.setText("Password minimal harus 6 karakter!");
+            statusLabel.setStyle("-fx-text-fill: #e74c3c;");
             return;
         }
 
         if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            showAlert(Alert.AlertType.ERROR, "Registrasi Gagal", "Format email tidak valid.");
+            statusLabel.setText("Format email tidak valid!");
+            statusLabel.setStyle("-fx-text-fill: #e74c3c;");
             return;
         }
 
         if (DataManager.isMemberIdExists(memberId)) {
-            showAlert(Alert.AlertType.ERROR, "Registrasi Gagal", "ID Member sudah terdaftar.");
+            statusLabel.setText("ID Member sudah terdaftar!");
+            statusLabel.setStyle("-fx-text-fill: #e74c3c;");
             return;
         }
 
         if (DataManager.isEmailExists(email)) {
-            showAlert(Alert.AlertType.ERROR, "Registrasi Gagal", "Email sudah terdaftar.");
+            statusLabel.setText("Email sudah terdaftar!");
+            statusLabel.setStyle("-fx-text-fill: #e74c3c;");
             return;
         }
 
         Member newMember = new Member(memberId, name, major, email, password);
         DataManager.registerMember(newMember);
-        showAlert(Alert.AlertType.INFORMATION, "Registrasi Berhasil", "Member baru berhasil didaftarkan. Silakan login.");
+        statusLabel.setText("Pendaftaran berhasil! Silakan login.");
+        statusLabel.setStyle("-fx-text-fill: #27ae60;");
 
         try {
-            MainApp.showLoginView(); // Kembali ke halaman login setelah berhasil
+            MainApp.showLoginView();
         } catch (IOException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Kesalahan Sistem", "Gagal kembali ke halaman login.");

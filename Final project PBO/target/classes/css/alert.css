@@ -1,0 +1,104 @@
+.custom-dialog {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.custom-dialog .header-panel {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.custom-dialog .header-panel .label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.custom-dialog .content {
+    -fx-padding: 20px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+.custom-button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.custom-button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.custom-button:pressed {
+    -fx-background-color: #004085;
+}
+
+/* Styling untuk tombol Cancel */
+.custom-dialog .button-bar .button:nth-child(2) {
+    -fx-background-color: #6c757d;
+}
+
+.custom-dialog .button-bar .button:nth-child(2):hover {
+    -fx-background-color: #5a6268;
+}
+
+.custom-dialog .button-bar .button:nth-child(2):pressed {
+    -fx-background-color: #545b62;
+}
+
+/* Styling khusus untuk alert tipe berbeda */
+.alert-error {
+    -fx-background-color: #fff5f5;
+}
+
+.alert-error .header-panel {
+    -fx-background-color: #f8d7da;
+}
+
+.alert-error .header-panel .label {
+    -fx-text-fill: #721c24;
+}
+
+.alert-warning {
+    -fx-background-color: #fff3cd;
+}
+
+.alert-warning .header-panel {
+    -fx-background-color: #ffeeba;
+}
+
+.alert-warning .header-panel .label {
+    -fx-text-fill: #856404;
+}
+
+.alert-information {
+    -fx-background-color: #d1ecf1;
+}
+
+.alert-information .header-panel {
+    -fx-background-color: #bee5eb;
+}
+
+.alert-information .header-panel .label {
+    -fx-text-fill: #0c5460;
+}
+
+.alert-confirmation {
+    -fx-background-color: linear-gradient(to bottom, #87cefa, #ffffff);
+}
+
+.alert-confirmation .header-panel {
+    -fx-background-color: transparent;
+}
+
+.alert-confirmation .header-panel .label {
+    -fx-text-fill: #155724;
+} 

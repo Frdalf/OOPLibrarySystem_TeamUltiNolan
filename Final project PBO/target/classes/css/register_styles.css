@@ -1,0 +1,91 @@
+/* styles.css */
+
+/* --- Latar Belakang Utama --- */
+.root-pane {
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #87cefa , #ffffff);
+}
+
+/* --- Kontainer Form Utama --- */
+.form-container {
+    -fx-background-color: white;
+    -fx-padding: 30px 30px 30px 30px;
+    -fx-background-radius: 15px; /* Sudut melengkung untuk panel */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 5); /* Efek bayangan */
+}
+
+/* --- Judul Form --- */
+.title-label {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+/* --- Label untuk setiap input --- */
+.grid-pane .label {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+}
+
+/* --- Styling untuk semua Text Field dan Password Field --- */
+.text-field, .password-field {
+    -fx-background-radius: 8px; /* Sudut melengkung untuk input */
+    -fx-border-radius: 8px;
+    -fx-border-color: #cccccc;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #a0a0a0;
+    -fx-background-insets: 0;
+}
+
+/* --- Efek saat Text Field di-klik (focus) --- */
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #007bff; /* Warna border berubah menjadi biru */
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.3), 5, 0, 0, 0);
+}
+
+/* --- Tombol Registrasi --- */
+.register-button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-cursor: hand; /* Mengubah kursor menjadi tangan saat di atas tombol */
+}
+
+/* --- Efek saat kursor di atas tombol --- */
+.register-button:hover {
+    -fx-background-color: #0056b3; /* Warna menjadi lebih gelap */
+}
+
+/* --- Tombol Kembali --- */
+.back-button {
+    -fx-background-color: white;
+    -fx-text-fill: #007bff;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-background-radius: 8px;
+    -fx-border-color: #007bff;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 2, 0, 0, 1);
+    -fx-cursor: hand;
+    -fx-margin: 0 0 10px 0;
+}
+.back-button:hover {
+    -fx-background-color: #e6f0ff;
+    -fx-text-fill: #0056b3;
+    -fx-border-color: #0056b3;
+}
+
+/* --- Status Label --- */
+.status-label {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #dc3545; /* Warna merah untuk pesan error */
+    -fx-padding: 5px 0;
+}

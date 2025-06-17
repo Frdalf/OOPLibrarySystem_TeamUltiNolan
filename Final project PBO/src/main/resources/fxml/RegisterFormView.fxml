@@ -1,53 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #f4f4f4; -fx-padding: 30;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.controller.RegisterFormController">
+<StackPane styleClass="root-pane" alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.controller.RegisterFormController">
+    <stylesheets>
+        <URL value="@../css/register_styles.css" />
+    </stylesheets>
+
     <children>
-        <Label text="Form Registrasi Member" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;" />
-        <GridPane hgap="10" vgap="10" alignment="CENTER">
-            <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" minWidth="100.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
+        <VBox fx:id="formContainer" alignment="CENTER" maxWidth="480.0" maxHeight="600.0" spacing="20.0" styleClass="form-container">
             <children>
-                <Label text="ID Member:" GridPane.rowIndex="0" style="-fx-font-size: 14px;"/>
-                <TextField fx:id="memberIdField" promptText="Contoh: M001" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-size: 14px;"/>
+                <Label styleClass="title-label" text="Pendaftaran Anggota Perpustakaan" />
 
-                <Label text="Nama Lengkap:" GridPane.rowIndex="1" style="-fx-font-size: 14px;"/>
-                <TextField fx:id="nameField" promptText="Nama Lengkap Anda" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-size: 14px;"/>
+                <GridPane hgap="10.0" styleClass="grid-pane" vgap="15.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="280.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="👤 ID Member" GridPane.rowIndex="0" />
+                        <TextField fx:id="memberIdField" promptText="ID Member" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label text="Jurusan:" GridPane.rowIndex="2" style="-fx-font-size: 14px;"/>
-                <TextField fx:id="majorField" promptText="Jurusan Anda" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-font-size: 14px;"/>
+                        <Label text="👤 Nama Lengkap" GridPane.rowIndex="1" />
+                        <TextField fx:id="nameField" promptText="Nama Lengkap" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Email:" GridPane.rowIndex="3" style="-fx-font-size: 14px;"/>
-                <TextField fx:id="emailField" promptText="email@example.com" GridPane.columnIndex="1" GridPane.rowIndex="3" style="-fx-font-size: 14px;"/>
+                        <Label text="🎓 Jurusan" GridPane.rowIndex="2" />
+                        <TextField fx:id="majorField" promptText="Nama Jurusan" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <Label text="Password:" GridPane.rowIndex="4" style="-fx-font-size: 14px;"/>
-                <PasswordField fx:id="passwordField" promptText="Buat Password" GridPane.columnIndex="1" GridPane.rowIndex="4" style="-fx-font-size: 14px;"/>
+                        <Label text="✉️ Email" GridPane.rowIndex="3" />
+                        <TextField fx:id="emailField" promptText="Masukkan Email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                        <Label text="🔒 Password" GridPane.rowIndex="4" />
+                        <PasswordField fx:id="passwordField" promptText="Masukan Password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </GridPane>
+
+                <Button fx:id="registerButton" onAction="#handleRegisterMember" prefHeight="45.0" prefWidth="200.0" styleClass="register-button" text="Buat Akun">
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Button>
+
+                <Button fx:id="backToLoginButton" onAction="#handleBackToLogin" prefHeight="40.0" prefWidth="200.0" styleClass="back-button" text="Kembali ke Login" />
+
+                <Label fx:id="statusLabel" styleClass="status-label" />
             </children>
-        </GridPane>
-        <Button text="Daftar" onAction="#handleRegisterMember" style="-fx-font-size: 16px; -fx-background-color: #28a745; -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 5;"/>
-        <Button text="Kembali ke Login" onAction="#handleBackToLogin" style="-fx-font-size: 14px; -fx-background-color: #6c757d; -fx-text-fill: white; -fx-padding: 8 15; -fx-background-radius: 5;"/>
-        <Label fx:id="statusLabel" style="-fx-text-fill: red; -fx-font-size: 14px;"/>
+        </VBox>
     </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-</VBox>
+</StackPane>

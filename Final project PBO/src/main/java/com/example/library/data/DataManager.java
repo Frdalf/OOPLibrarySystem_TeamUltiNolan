@@ -158,6 +158,23 @@ public class DataManager {
         return loadMembers().stream().filter(m -> m.getMemberId().equalsIgnoreCase(memberId)).findFirst();
     }
 
+    public static Optional<Member> findMemberByEmail(String email) {
+        return loadMembers().stream()
+                .filter(member -> member.getEmail().equalsIgnoreCase(email))
+                .findFirst();
+    }
+
+    public static void updateMember(Member updatedMember) {
+        List<Member> members = loadMembers();
+        for (int i = 0; i < members.size(); i++) {
+            if (members.get(i).getMemberId().equals(updatedMember.getMemberId())) {
+                members.set(i, updatedMember);
+                saveMembers(members);
+                break;
+            }
+        }
+    }
+
     // --- Operasi Transaksi ---
     public static List<Transaction> loadTransactions() {
         List<Transaction> transactions = new ArrayList<>();
@@ -278,22 +295,29 @@ public class DataManager {
     }
 
     public static int getTotalBooksReturnedThisMonth() {
-        LocalDate today = LocalDate.now();
-        return (int) loadTransactions().stream()
-                .filter(t -> t.getReturnDate() != null && !t.getReturnDate().equals("-") &&
-                        LocalDate.parse(t.getReturnDate()).getMonth() == today.getMonth() &&
-                        LocalDate.parse(t.getReturnDate()).getYear() == today.getYear() &&
-                        t.getStatus().equals("RETURNED"))
-                .count();
+        LocalDate now = LocalDate.now();
+        return loadTransactions().stream()
+                .filter(t -> t.getStatus().equals("RETURNED") &&
+                        t.getReturnDate() != null &&
+                        LocalDate.parse(t.getReturnDate()).getMonthValue() == now.getMonthValue() &&
+                        LocalDate.parse(t.getReturnDate()).getYear() == now.getYear())
+                .mapToInt(t -> 1)
+                .sum();
+    }
+
+    public static double getTotalAllFines() {
+        return loadTransactions().stream()
+                .mapToDouble(Transaction::getFine)
+                .sum();
     }
 
     public static double getTotalFinesCollectedThisMonth() {
-        LocalDate today = LocalDate.now();
+        LocalDate now = LocalDate.now();
         return loadTransactions().stream()
-                .filter(t -> t.getReturnDate() != null && !t.getReturnDate().equals("-") &&
-                        LocalDate.parse(t.getReturnDate()).getMonth() == today.getMonth() &&
-                        LocalDate.parse(t.getReturnDate()).getYear() == today.getYear() &&
-                        t.getFine() > 0)
+                .filter(t -> t.getStatus().equals("RETURNED") &&
+                        t.getReturnDate() != null &&
+                        LocalDate.parse(t.getReturnDate()).getMonthValue() == now.getMonthValue() &&
+                        LocalDate.parse(t.getReturnDate()).getYear() == now.getYear())
                 .mapToDouble(Transaction::getFine)
                 .sum();
     }

@@ -15,10 +15,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
@@ -41,6 +43,7 @@ public class AdminController {
 
     // Komponen Tab Manajemen Buku
     @FXML private TableView<Book> bookTableView;
+    @FXML private TableColumn<Book, String> bookNoCol;
     @FXML private TableColumn<Book, String> isbnColumn;
     @FXML private TableColumn<Book, String> titleColumn;
     @FXML private TableColumn<Book, String> authorColumn;
@@ -52,6 +55,7 @@ public class AdminController {
 
     // Komponen Tab Proses Pengembalian
     @FXML private TableView<Transaction> borrowedBooksTableView; // Untuk menampilkan buku yang sedang dipinjam
+    @FXML private TableColumn<Transaction, String> transNoColReturn;
     @FXML private TableColumn<Transaction, String> transIdReturnColumn;
     @FXML private TableColumn<Transaction, String> memberIdReturnColumn;
     @FXML private TableColumn<Transaction, String> bookIsbnReturnColumn;
@@ -65,10 +69,12 @@ public class AdminController {
     @FXML private VBox dashboardPane;
     @FXML private VBox masterDataPane;
     @FXML private VBox bookManagementPane;
+    @FXML private VBox returnProcessingPane;
 
     @FXML private Label totalBooksLabel;
     @FXML private Label totalBorrowedLabel;
     @FXML private Label totalReturnedLabel;
+    @FXML private Label totalFinesLabel;
 
     // Dashboard: Tabel Transaksi Terkini
     @FXML private TableView<Transaction> recentTransactionsTable;
@@ -82,6 +88,7 @@ public class AdminController {
     @FXML private TableColumn<Transaction, String> transFineCol;
 
     @FXML private TableView<Member> memberTableView;
+    @FXML private TableColumn<Member, String> memberNoCol;
     @FXML private TableColumn<Member, String> memberIdCol;
     @FXML private TableColumn<Member, String> memberNameCol;
     @FXML private TableColumn<Member, String> memberMajorCol;
@@ -94,6 +101,7 @@ public class AdminController {
     @FXML
     public void initialize() {
         // Setup Tabel Buku
+        bookNoCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.valueOf(bookTableView.getItems().indexOf(cellData.getValue()) + 1)));
         isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -103,6 +111,7 @@ public class AdminController {
         bookTableView.setItems(bookList);
 
         // Setup Tabel Proses Pengembalian
+        transNoColReturn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.valueOf(borrowedBooksTableView.getItems().indexOf(cellData.getValue()) + 1)));
         transIdReturnColumn.setCellValueFactory(new PropertyValueFactory<>("transactionId"));
         memberIdReturnColumn.setCellValueFactory(new PropertyValueFactory<>("memberId"));
         bookIsbnReturnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
@@ -123,6 +132,7 @@ public class AdminController {
         transFineCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.format("Rp %,.0f", cellData.getValue().getFine())));
 
         // Setup tabel member (Manage User)
+        memberNoCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.valueOf(memberTableView.getItems().indexOf(cellData.getValue()) + 1)));
         memberIdCol.setCellValueFactory(new PropertyValueFactory<>("memberId"));
         memberNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         memberMajorCol.setCellValueFactory(new PropertyValueFactory<>("major"));
@@ -133,6 +143,7 @@ public class AdminController {
         dashboardPane.setVisible(true);
         masterDataPane.setVisible(false);
         bookManagementPane.setVisible(false);
+        returnProcessingPane.setVisible(false);
         showDashboard(); // update dashboard saat pertama kali masuk
 
         // Setup filter bulan & tahun
@@ -473,12 +484,16 @@ public class AdminController {
         dashboardPane.setVisible(false);
         masterDataPane.setVisible(false);
         bookManagementPane.setVisible(true);
+        returnProcessingPane.setVisible(false);
         loadBookData(); // Selalu muat data terbaru saat tab dipilih
     }
 
     @FXML
     private void showReturnProcessing() {
-        mainTabPane.getSelectionModel().select(returnProcessingTab);
+        dashboardPane.setVisible(false);
+        masterDataPane.setVisible(false);
+        bookManagementPane.setVisible(false);
+        returnProcessingPane.setVisible(true);
         loadBorrowedTransactionsData(); // Selalu muat data terbaru
     }
 
@@ -494,6 +509,20 @@ public class AdminController {
         confirmAlert.setTitle("Konfirmasi Logout");
         confirmAlert.setHeaderText("Anda akan keluar dari sesi admin.");
         confirmAlert.setContentText("Apakah Anda yakin ingin logout?");
+
+        // Styling untuk dialog
+        DialogPane dialogPane = confirmAlert.getDialogPane();
+        dialogPane.getStylesheets().add(
+            getClass().getResource("/css/alert.css").toExternalForm()
+        );
+        dialogPane.getStyleClass().add("custom-dialog");
+        dialogPane.getStyleClass().add("alert-confirmation");
+
+        // Styling untuk buttons
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
+        okButton.getStyleClass().add("custom-button");
+        cancelButton.getStyleClass().add("custom-button");
 
         Optional<ButtonType> result = confirmAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -511,10 +540,12 @@ public class AdminController {
         dashboardPane.setVisible(true);
         masterDataPane.setVisible(false);
         bookManagementPane.setVisible(false);
+        returnProcessingPane.setVisible(false);
         // Update statistik dashboard
         totalBooksLabel.setText(String.valueOf(DataManager.loadBooks().size()));
         totalBorrowedLabel.setText(String.valueOf(DataManager.getTotalBooksBorrowedThisMonth()));
         totalReturnedLabel.setText(String.valueOf(DataManager.getTotalBooksReturnedThisMonth()));
+        totalFinesLabel.setText(String.format("Rp %,.0f", DataManager.getTotalAllFines()));
         // Update data transaksi terkini (default: bulan & tahun sekarang)
         filterTransaksiDashboard();
     }
@@ -524,6 +555,8 @@ public class AdminController {
         // Untuk demo, tampilkan dashboard saja atau tambahkan pane transaksi jika ada
         dashboardPane.setVisible(true);
         masterDataPane.setVisible(false);
+        bookManagementPane.setVisible(false);
+        returnProcessingPane.setVisible(false);
     }
 
     @FXML
@@ -531,6 +564,7 @@ public class AdminController {
         dashboardPane.setVisible(false);
         masterDataPane.setVisible(true);
         bookManagementPane.setVisible(false);
+        returnProcessingPane.setVisible(false);
         // Load data member ke tabel
         memberList.setAll(com.example.library.data.DataManager.loadMembers());
     }
@@ -753,11 +787,47 @@ public class AdminController {
         recentTransactionsTable.setItems(filtered);
     }
 
+    @FXML
+    private void resetTransactionSearch() {
+        searchTransactionField.clear();
+        loadBorrowedTransactionsData();
+    }
+
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+
+        // Styling untuk dialog
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+            getClass().getResource("/css/alert.css").toExternalForm()
+        );
+        dialogPane.getStyleClass().add("custom-dialog");
+
+        // Tambahkan class sesuai tipe alert
+        switch (alertType) {
+            case ERROR:
+                dialogPane.getStyleClass().add("alert-error");
+                break;
+            case WARNING:
+                dialogPane.getStyleClass().add("alert-warning");
+                break;
+            case INFORMATION:
+                dialogPane.getStyleClass().add("alert-information");
+                break;
+            case CONFIRMATION:
+                dialogPane.getStyleClass().add("alert-confirmation");
+                break;
+        }
+
+        // Styling untuk buttons
+        for (ButtonType buttonType : dialogPane.getButtonTypes()) {
+            Button button = (Button) dialogPane.lookupButton(buttonType);
+            button.getStyleClass().add("custom-button");
+        }
+
         alert.showAndWait();
     }
 }

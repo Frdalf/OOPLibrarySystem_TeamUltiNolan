@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    private static Stage primaryStage; // Menyimpan stage utama
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -28,7 +28,6 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
-    // Metode untuk menampilkan halaman login
     public static void showLoginView() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/LoginView.fxml"));
         Parent root = loader.load();
@@ -87,6 +86,13 @@ public class MainApp extends Application {
         primaryStage.show();
     }
 
+    public static void showForgotPasswordView() throws IOException {
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/ForgotPasswordView.fxml"));
+        Parent root = loader.load();
+        primaryStage.setTitle("Lupa Password");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
 
     public static void main(String[] args) {
         // Inisialisasi DataManager untuk membuat file CSV jika belum ada

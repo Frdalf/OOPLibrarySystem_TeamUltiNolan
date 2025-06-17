@@ -1,9 +1,11 @@
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\controller\AdminController.java
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\controller\LoginController.java
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\controller\MemberController.java
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\controller\RegisterFormController.java
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\data\DataManager.java
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\MainApp.java
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\model\Book.java
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\model\Member.java
-C:\Naufal Muammar\Semester 2\PBO\PerpusTest\src\main\java\com\example\library\model\Transaction.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\controller\AdminController.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\controller\ForgotPasswordController.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\controller\LoginController.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\controller\MemberController.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\controller\RegisterFormController.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\data\DataManager.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\MainApp.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\model\Book.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\model\Member.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\model\Transaction.java
+C:\Naufal Muammar\Semester 2\PBO\OOPLibrarySystem_TeamUltiNolan\Final project PBO\src\main\java\com\example\library\service\EmailService.java

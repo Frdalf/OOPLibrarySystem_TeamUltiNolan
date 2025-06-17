@@ -106,6 +106,11 @@ public class LoginController {
 
     @FXML
     private void handleForgotPassword() {
-        showAlert(Alert.AlertType.INFORMATION, "Fitur Dalam Pengembangan", "Fitur lupa password masih dalam tahap pengembangan.");
+        try {
+            com.example.library.MainApp.showForgotPasswordView();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Kesalahan Sistem", "Gagal membuka halaman lupa password.");
+        }
     }
 }
