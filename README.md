@@ -12,7 +12,7 @@
 ## Pepustakaan kampus 📖
 ## Deskripsi 📜
 OOPLibrarySystem_TeamUltiNolan adalah aplikasi desktop berbasis Java yang dirancang untuk membantu proses manajemen perpustakaan kampus secara digital. Sistem ini dibangun menggunakan teknologi Java dan JavaFX, serta menerapkan pola arsitektur Model View Controller (MVC) untuk menjaga pemisahan logika dan tampilan.
-Fungsionalitas Utama:
+## Fungsionalitas Utama:
 - 📚 Manajemen Data Buku dan Anggota (CRUD)
 Tambah, ubah, hapus, dan cari data buku serta anggota perpustakaan.
 - 📥 Peminjaman Buku
@@ -38,3 +38,25 @@ Aplikasi ini menerapkan arsitektur Model–View–Controller (MVC) untuk memisah
 - /data → Data CSV.
 - /docs → Dokumentasi teknis.
 - /presentation → File presentasi.
+## 🛠 Teknologi yang Digunakan
+- 🧑‍💻 Java 11
+- 🎨 JavaFX (GUI, Alert, TableView, SceneBuilder)
+- 📦 Maven (Project Management)
+- 📂 File I/O (BufferedReader / Writer) untuk CSV
+- 🧪 JUnit / Manual Testing
+- 💻 IntelliJ IDEA
+## ⚙️ Cara Menjalankan Aplikasi
+Aplikasi ini dapat dijalankan pada lingkungan Java 11+ dengan bantuan IntelliJ IDEA dan JavaFX SDK.
+1. Pastikan Java JDK 11 dan JavaFX SDK sudah terpasang.
+2. Clone repository:
+   git clone https://github.com/Frdalf/OOPLibrarySystem_TeamUltiNolan.git
+3. Buka folder Final project PBO di IntelliJ IDEA.
+4. Jalankan file MainApp.java.
+## 📄 Lisensi
+Proyek ini dibuat sebagai bagian dari tugas akademik pada mata kuliah Pemrograman Berbasis Objek
+Universitas Muhammadiyah Malang – 2025
+📚 Digunakan untuk tujuan pembelajaran, tidak untuk dikomersialkan tanpa izin dari tim pengembang.
+## 🙌 Ucapan Terima Kasih
+Kami mengucapkan terima kasih kepada dosen pembimbing dan seluruh tim atas kerja sama dan semangat dalam menyelesaikan proyek ini. Proyek ini menjadi pengalaman berharga dalam kolaborasi, debugging, dan pengembangan aplikasi secara nyata.
+
+
