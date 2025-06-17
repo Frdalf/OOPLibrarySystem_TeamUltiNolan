@@ -1,5 +1,5 @@
 # OOPLibrarySystem_TeamUltiNolan
-> Final Project – Pemrograman Berbasis Objek (PBO)  
+> Final Project – Pemrograman Berorientasi Objek (PBO)  
 > 📌 Universitas Muhammadiyah Malang • 2025  
 
 # Nama Anggota:
