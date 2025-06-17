@@ -27,7 +27,12 @@ Sistem mendukung login sebagai admin maupun anggota, serta form registrasi pengg
 Menggunakan dialog JavaFX (Alert) untuk memberikan umpan balik saat terjadi kesalahan atau saat aksi berhasil dilakukan.
 - 📄 Penyimpanan Data Menggunakan CSV
 Seluruh data disimpan secara lokal dalam file .csv, dan dibaca kembali saat aplikasi dijalankan ulang.
-Project ini disusun untuk menyelesaikan **"Final Project Mata Kuliah Pemrograman Berorientasi Objek (PBO)"**
+- Project ini disusun untuk menyelesaikan **"Final Project Mata Kuliah Pemrograman Berorientasi Objek (PBO)"**
+## 🧠 Arsitektur Sistem
+Aplikasi ini menerapkan arsitektur Model–View–Controller (MVC) untuk memisahkan logika bisnis, antarmuka pengguna, dan kontrol alur aplikasi. Hal ini mempermudah pengembangan modular dan pemeliharaan kode.
+- Model: Berisi logika dan struktur data, seperti entitas Book, Member, Transaction.
+- View: Antarmuka grafis menggunakan JavaFX dan file .fxml.
+- Controller: Menangani input dari pengguna dan menghubungkan View dengan Model.
 ## 🧩 Struktur Folder
 - /src → Kode sumber (Java).
 - /data → Data CSV.
