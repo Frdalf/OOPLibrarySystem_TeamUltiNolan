@@ -1,31 +1,101 @@
-"ISBN","Title","Author","Quantity","AvailableQuantity"
-"978-602-73156-1-0","Pemrograman Java Dasar","Agus Salim","5","2"
-"978-032-17657-2-3","Effective Java","Joshua Bloch","3","1"
-"978-013-23508-8-4","Clean Code","Robert C. Martin","4","3"
-"978-979-3062-79-3","Laskar Pelangi","Andrea Hirata","7","7"
-"978-979-22-5220-1","Negeri 5 Menara","Ahmad Fuadi","5","5"
-"978-0-06-112008-4","To Kill a Mockingbird","Harper Lee","3","3"
-"978-0-590-35340-3","Harry Potter and the Sorcerer's Stone","J.K. Rowling","5","4"
-"978-602-03-0358-4","Bumi","Tere Liye","5","4"
-"978-979-22-7005-2","Supernova: Ksatria, Puteri, dan Bintang Jatuh","Dee Lestari","2","2"
-"978-979-91-0244-8","Perahu Kertas","Dee Lestari","2","1"
-"978-0-618-00221-3","The Hobbit","J.R.R. Tolkien","3","3"
-"978-0-544-00341-5","The Lord of the Rings","J.R.R. Tolkien","4","4"
-"978-979-3062-80-1","Sang Pemimpi","Andrea Hirata","7","7"
-"978-602-291-121-3","Negeri Para Bedebah","Tere Liye","3","3"
-"978-979-3780-77-9","Ayat-Ayat Cinta","Habiburrahman El Shirazy","5","5"
-"978-602-420-123-7","Filosofi Teras","Henry Manampiring","6","6"
-"978-602-424-422-7","Atomic Habits","James Clear","8","8"
-"978-602-032-388-9","Sebuah Seni untuk Bersikap Bodo Amat","Mark Manson","6","6"
-"978-602-063-483-1","Dilan: Dia adalah Dilanku Tahun 1990","Pidi Baiq","9","9"
-"978-602-424-479-1","Rich Dad Poor Dad","Robert T. Kiyosaki","7","7"
-"978-623-7656-10-6","The Psychology of Money","Morgan Housel","7","7"
-"978-602-480-780-4","Start with Why","Simon Sinek","3","3"
-"978-979-024-839-6","5 CM","Donny Dhirgantoro","2","2"
-"978-602-032-102-1","Berani Tidak Disukai","Ichiro Kishimi & Fumitake Koga","5","5"
-"978-602-291-154-0","Rindu","Tere Liye","5","5"
-"978-602-291-238-7","You Do You","Fellexandro Ruby","2","2"
-"978-602-434-164-2","The Power of Habit","Charles Duhigg","5","5"
-"978-623-90037-0-0","Thinking, Fast and Slow","Daniel Kahneman","3","3"
-"978-602-425-261-0","Laut bercerita","Leila S. Chudori","1","1"
-"978-602-063-053-6","Dunia Sophie","Jostein Gaarder","2","2"
+ISBN,Title,Author,Quantity,AvailableQuantity
+978-602-73156-1-0,Pemrograman Java Dasar,Agus Salim,5,2
+978-032-17657-2-3,Effective Java,Joshua Bloch,3,1
+978-013-23508-8-4,Clean Code,Robert C. Martin,4,3
+978-979-3062-79-3,Laskar Pelangi,Andrea Hirata,7,7
+978-979-22-5220-1,Negeri 5 Menara,Ahmad Fuadi,5,5
+978-0-06-112008-4,To Kill a Mockingbird,Harper Lee,3,3
+978-0-590-35340-3,Harry Potter and the Sorcerer's Stone,J.K. Rowling,5,4
+978-602-03-0358-4,Bumi,Tere Liye,5,4
+978-979-22-7005-2,"Supernova: Ksatria, Puteri, dan Bintang Jatuh",Dee Lestari,2,2
+978-979-91-0244-8,Perahu Kertas,Dee Lestari,2,1
+978-0-618-00221-3,The Hobbit,J.R.R. Tolkien,3,3
+978-0-544-00341-5,The Lord of the Rings,J.R.R. Tolkien,4,4
+978-979-3062-80-1,Sang Pemimpi,Andrea Hirata,7,7
+978-602-291-121-3,Negeri Para Bedebah,Tere Liye,3,3
+978-979-3780-77-9,Ayat-Ayat Cinta,Habiburrahman El Shirazy,5,5
+978-602-420-123-7,Filosofi Teras,Henry Manampiring,6,6
+978-602-424-422-7,Atomic Habits,James Clear,8,8
+978-602-032-388-9,Sebuah Seni untuk Bersikap Bodo Amat,Mark Manson,6,6
+978-602-063-483-1,Dilan: Dia adalah Dilanku Tahun 1990,Pidi Baiq,9,9
+978-602-424-479-1,Rich Dad Poor Dad,Robert T. Kiyosaki,7,7
+978-623-7656-10-6,The Psychology of Money,Morgan Housel,7,7
+978-602-480-780-4,Start with Why,Simon Sinek,3,3
+978-979-024-839-6,5 CM,Donny Dhirgantoro,2,2
+978-602-032-102-1,Berani Tidak Disukai,Ichiro Kishimi & Fumitake Koga,5,5
+978-602-291-154-0,Rindu,Tere Liye,5,5
+978-602-291-238-7,You Do You,Fellexandro Ruby,2,2
+978-602-434-164-2,The Power of Habit,Charles Duhigg,5,5
+978-623-90037-0-0,"Thinking, Fast and Slow",Daniel Kahneman,3,3
+978-602-425-261-0,Laut bercerita,Leila S. Chudori,1,1
+978-602-063-053-6,Dunia Sophie,Jostein Gaarder,2,2
+978-450-1407-22-7,Bulan,Joko Prasetya,5,5
+978-726-1710-56-9,Matahari,Citra Saputra,5,5
+978-413-4810-84-4,Cinta di Ujung Sajadah,Fajar Rahmawati,5,5
+978-449-2953-53-8,Jejak Langkah,Hana Rahmawati,5,5
+978-883-1688-62-1,Anak Semua Bangsa,Ilham Saputra,5,5
+978-187-7436-49-3,Orang-Orang Biasa,Citra Wahyuni,5,5
+978-889-5026-47-4,Selamat Tinggal,Budi Nugroho,5,5
+978-500-3540-90-7,Garis Waktu,Joko Hidayat,5,5
+978-475-8165-12-0,Milea,Hana Siregar,5,5
+978-200-7766-77-1,Rapijali,Andi Santoso,5,5
+978-207-3334-77-0,Selena,Citra Santoso,5,5
+978-216-5623-37-1,Hafalan Shalat Delisa,Andi Saputra,5,5
+978-344-5048-10-6,Negeri di Ujung Tanduk,Fajar Wijaya,5,5
+978-790-4938-86-0,Ketika Cinta Bertasbih,Budi Santoso,5,5
+978-357-8999-43-8,Pulang,Citra Santoso,5,5
+978-629-6739-59-4,Pergi,Fajar Wijaya,5,5
+978-457-9894-45-2,Bidadari-Bidadari Surga,Dina Wijaya,5,5
+978-521-1322-57-8,Surat Kecil untuk Tuhan,Citra Wijaya,5,5
+978-378-9317-81-7,Sabtu Bersama Bapak,Dina Wijaya,5,5
+978-946-8804-19-0,Tentang Kamu,Budi Wahyuni,5,5
+978-795-8395-16-9,The Alchemist,Dina Santoso,5,5
+978-491-1363-75-5,Sapiens,Ilham Wahyuni,5,5
+978-446-4150-99-1,Homo Deus,Hana Wahyuni,5,5
+978-384-5371-81-4,21 Lessons for the 21st Century,Joko Prasetya,5,5
+978-302-5943-88-0,The Power of Now,Gita Siregar,5,5
+978-524-7089-28-5,Ikigai,Hana Saputra,5,5
+978-597-3412-83-6,Deep Work,Gita Putri,5,5
+978-695-3436-12-0,Ego is the Enemy,Budi Wahyuni,5,5
+978-491-1739-75-0,Stillness is the Key,Fajar Wijaya,5,5
+978-738-8372-84-2,Digital Minimalism,Ilham Santoso,5,5
+978-382-2674-86-9,How to Win Friends and Influence People,Eka Wijaya,5,5
+978-736-2826-77-5,Thinking in Systems,Budi Wijaya,5,5
+978-616-8877-72-6,The Art of Thinking Clearly,Gita Nugroho,5,5
+978-275-8946-67-3,The 7 Habits of Highly Effective People,Eka Nugroho,5,5
+978-642-6206-80-3,Outliers,Ilham Saputra,5,5
+978-415-2369-54-5,Grit,Fajar Wijaya,5,5
+978-828-8514-12-9,Blink,Gita Santoso,5,5
+978-480-9937-95-9,Drive,Eka Prasetya,5,5
+978-801-1767-91-2,Man’s Search for Meaning,Fajar Saputra,5,5
+978-429-2706-93-0,The Lean Startup,Hana Siregar,5,5
+978-399-9096-47-6,Zero to One,Budi Prasetya,5,5
+978-534-3060-99-4,The Innovator’s Dilemma,Joko Nugroho,5,5
+978-533-5368-73-7,Rework,Ilham Wahyuni,5,5
+978-499-4531-84-7,Hooked,Budi Wijaya,5,5
+978-979-8300-42-6,Good to Great,Budi Wahyuni,5,5
+978-318-8830-20-4,The Hard Thing About Hard Things,Gita Wahyuni,5,5
+978-574-1647-87-7,Crushing It!,Dina Nugroho,5,5
+978-208-2005-15-6,Can’t Hurt Me,Ilham Nugroho,5,5
+978-689-4103-92-1,Tools of Titans,Gita Putri,5,5
+978-533-7493-13-9,Steal Like an Artist,Joko Wahyuni,5,5
+978-725-2202-50-5,Show Your Work!,Dina Wahyuni,5,5
+978-780-6392-77-4,The War of Art,Fajar Putri,5,5
+978-356-9411-15-6,The Dip,Eka Wahyuni,5,5
+978-415-1182-94-2,The One Thing,Citra Hidayat,5,5
+978-660-2071-79-9,Essentialism,Fajar Saputra,5,5
+978-908-5843-24-7,"Start Over, Finish Rich",Joko Nugroho,5,5
+978-856-5947-63-5,I Will Teach You to Be Rich,Gita Prasetya,5,5
+978-652-2092-98-4,Make Time,Joko Wijaya,5,5
+978-860-6848-50-9,Your Money or Your Life,Citra Prasetya,5,5
+978-559-7691-38-0,The Millionaire Fastlane,Dina Wahyuni,5,5
+978-351-8382-10-9,Rich Dad's Cashflow Quadrant,Ilham Santoso,5,5
+978-657-5266-27-3,Unshakeable,Budi Nugroho,5,5
+978-995-7021-55-6,Money Master the Game,Fajar Prasetya,5,5
+978-400-2115-88-8,Principles,Hana Putri,5,5
+978-431-7452-63-3,The Ride of a Lifetime,Fajar Hidayat,5,5
+978-771-2552-57-8,The Compound Effect,Budi Siregar,5,5
+978-725-6870-94-0,Atomic Thinking,Gita Saputra,5,5
+978-741-1081-44-1,Mini Habits,Fajar Putri,5,5
+978-646-2591-83-0,Mindset,Budi Wijaya,5,5
+978-893-5719-27-3,Unlimited Power,Citra Santoso,5,5
