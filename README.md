@@ -15,8 +15,7 @@ Fungsionalitas utama meliputi:
 - Antarmuka GUI interaktif berbasis JavaFX
 Project ini disusun untuk menyelesaikan **"Final Project Mata Kuliah Pemrograman Berorientasi Objek (PBO)"**
 ## 🧩 Struktur Folder
-/src → Kode sumber (Java)
-/data → Data CSV
-/dos → Dokumentasi teknis
-/presentation → File presentasi
-README.md
+■	/src → Kode sumber (Java).
+■	/data → Data CSV.
+■	/docs → Dokumentasi teknis.
+■	/presentation → File presentasi
