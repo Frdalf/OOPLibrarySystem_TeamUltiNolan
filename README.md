@@ -6,3 +6,10 @@
 3. Farid Al Farizi | 202410370110017 | Frontend Specialist: design and implement JavaFX UI.
 
 # Pepustakaan kampus 📖
+# Deskripsi 📜
+Project ini merupakan sistem informasi perpustakaan kampus yang dibangun menggunakan bahasa pemrograman **Java** dengan antarmuka **JavaFX**.  
+Fungsionalitas utama meliputi:
+- Manajemen data buku & anggota (CRUD)
+- Proses peminjaman dan pengembalian buku
+- Validasi data, perhitungan denda
+- Antarmuka GUI interaktif berbasis JavaFX
