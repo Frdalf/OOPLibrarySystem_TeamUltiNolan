@@ -19,7 +19,7 @@
 <?import java.lang.String?>
 <BorderPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f0f8ff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.controller.MemberController">
     <left>
-        <VBox spacing="15.0" style="-fx-background-color: linear-gradient(to bottom, #00476a, #00a6ff); -fx-padding: 20;" prefWidth="220">
+        <VBox spacing="15.0" style="-fx-background-color: linear-gradient(to bottom, #87cefa, #ffffff); -fx-padding: 20;" prefWidth="220">
             <children>
                 <VBox spacing="5" alignment="CENTER">
                     <padding>
@@ -27,7 +27,7 @@
                     </padding>
                     <children>
                         <Label fx:id="welcomeLabel" text="Halo, Member!" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                        <Label fx:id="memberIdDisplayLabel" text="ID: -" style="-fx-font-size: 14px; -fx-text-fill: #bdc3c7;"/>
+                        <Label fx:id="memberIdDisplayLabel" text="ID: -" style="-fx-font-size: 14px; -fx-text-fill: #000000;"/>
                     </children>
                 </VBox>
                 
