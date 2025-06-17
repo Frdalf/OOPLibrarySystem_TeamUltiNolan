@@ -63,6 +63,8 @@ public class ResetPasswordController {
 
         if (success) {
             statusLabel.setText("Password berhasil direset!");
+            statusLabel.getStyleClass().removeAll("status-label", "success");
+            statusLabel.getStyleClass().addAll("status-label", "success");
             showAlert(Alert.AlertType.INFORMATION, "Sukses", "Password Anda berhasil direset!");
             handleBackToLogin();
         } else {

@@ -13,15 +13,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.application.Platform;
 
 public class ForgotPasswordController {
     @FXML private TextField emailField;
     @FXML private Button sendCodeButton;
     @FXML private Button backToLoginButton;
-    @FXML private Label statusLabel;
+
+    private String tempEmail;
+    private String tempVerificationCode;
 
     private String generateVerificationCode() {
         Random random = new Random();
@@ -34,7 +38,11 @@ public class ForgotPasswordController {
         String email = emailField.getText().trim();
         
         if (email.isEmpty()) {
-            statusLabel.setText("Email tidak boleh kosong!");
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Email tidak boleh kosong!");
+            alert.showAndWait();
             return;
         }
 
@@ -46,23 +54,34 @@ public class ForgotPasswordController {
         try {
             // Send verification code via email
             EmailService.sendVerificationCode(email, verificationCode);
-            statusLabel.setText("Kode verifikasi telah dikirim ke email Anda!");
-            
-            // Navigate to reset password view
+            tempEmail = email;
+            tempVerificationCode = verificationCode;
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Sukses");
+            alert.setHeaderText(null);
+            alert.setContentText("Kode verifikasi telah dikirim ke email Anda!");
+            alert.showAndWait();
+            // Setelah user klik OK, pindah ke halaman reset password
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ResetPasswordView.fxml"));
             Parent root = loader.load();
-            
             ResetPasswordController controller = loader.getController();
-            controller.setEmailAndCode(email, verificationCode);
-            
+            controller.setEmailAndCode(tempEmail, tempVerificationCode);
             Scene scene = new Scene(root);
             Stage stage = (Stage) sendCodeButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (MessagingException e) {
-            statusLabel.setText("Error: Gagal mengirim email - " + e.getMessage());
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Gagal mengirim email: " + e.getMessage());
+            alert.showAndWait();
         } catch (IOException e) {
-            statusLabel.setText("Error: Tidak dapat membuka halaman reset password");
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Tidak dapat membuka halaman reset password");
+            alert.showAndWait();
         }
     }
 
@@ -77,7 +96,11 @@ public class ForgotPasswordController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            statusLabel.setText("Error: Tidak dapat kembali ke halaman login");
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Tidak dapat kembali ke halaman login");
+            alert.showAndWait();
         }
     }
 }

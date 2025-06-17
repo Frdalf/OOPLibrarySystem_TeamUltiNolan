@@ -117,7 +117,7 @@
                 <TableView fx:id="bookTableView" prefHeight="300.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="bookNoCol" maxWidth="65" minWidth="65" prefWidth="65" text="No" />
-                        <TableColumn fx:id="isbnColumn" maxWidth="120" minWidth="120" prefWidth="120.0" text="ISBN" />
+                        <TableColumn fx:id="isbnColumn" maxWidth="130" minWidth="130" prefWidth="130.0" text="ISBN" />
                         <TableColumn fx:id="titleColumn" minWidth="200" prefWidth="200.0" text="Judul" />
                         <TableColumn fx:id="authorColumn" minWidth="150" prefWidth="150.0" text="Penulis" />
                         <TableColumn fx:id="quantityColumn" maxWidth="80" minWidth="80" prefWidth="80" text="Total" />
