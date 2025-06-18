@@ -16,7 +16,7 @@ OOPLibrarySystem_TeamUltiNolan adalah aplikasi desktop berbasis Java yang diranc
 - 📚 Manajemen Data Buku dan Anggota (CRUD)
 Tambah, ubah, hapus, dan cari data buku serta anggota perpustakaan.
 - 📥 Peminjaman Buku
-Anggota dapat meminjam buku dengan durasi maksimal 7 hari. Transaksi dicatat otomatis ke dalam sistem.
+Anggota dapat meminjam buku. Transaksi dicatat otomatis ke dalam sistem.
 - 📤 Pengembalian Buku & Perhitungan Denda
 Sistem menghitung denda secara otomatis berdasarkan keterlambatan pengembalian.
 - 🔎 Pencarian Buku
