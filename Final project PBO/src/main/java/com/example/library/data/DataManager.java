@@ -61,7 +61,7 @@ public class DataManager {
         List<Book> books = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(BOOKS_FILE))) {
             List<String[]> records = reader.readAll();
-            records.remove(0); // Hapus header
+            records.remove(0);
             for (String[] record : records) {
                 books.add(new Book(record[0], record[1], record[2], Integer.parseInt(record[3]), Integer.parseInt(record[4])));
             }

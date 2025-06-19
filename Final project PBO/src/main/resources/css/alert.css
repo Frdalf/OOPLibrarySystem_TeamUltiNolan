@@ -41,7 +41,6 @@
     -fx-background-color: #004085;
 }
 
-/* Styling untuk tombol Cancel */
 .custom-dialog .button-bar .button:nth-child(2) {
     -fx-background-color: #6c757d;
 }
@@ -54,7 +53,6 @@
     -fx-background-color: #545b62;
 }
 
-/* Styling khusus untuk alert tipe berbeda */
 .alert-error {
     -fx-background-color: #fff5f5;
 }

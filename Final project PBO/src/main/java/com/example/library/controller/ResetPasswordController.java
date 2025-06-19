@@ -27,7 +27,7 @@ public class ResetPasswordController {
     private String verificationCode;
 
     public void initialize() {
-        // Initialize any necessary setup
+
     }
 
     public void setEmailAndCode(String email, String code) {

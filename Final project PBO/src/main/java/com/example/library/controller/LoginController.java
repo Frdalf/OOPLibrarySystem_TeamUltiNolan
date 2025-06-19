@@ -28,7 +28,7 @@ public class LoginController {
     @FXML private ImageView logoImageView;
     @FXML private StackPane rootPane;
 
-    // Username dan password admin (hardcoded untuk contoh)
+    // Username dan password admin
     private static final String ADMIN_USERNAME = "admin";
     private static final String ADMIN_PASSWORD = "admin";
 
@@ -40,8 +40,7 @@ public class LoginController {
                 handleLogin();
             }
         });
-        
-        // Load the logo image
+
         try {
             Image logoImage = new Image(getClass().getResourceAsStream("/images/login_bg.jpg"));
             logoImageView.setImage(logoImage);
@@ -49,7 +48,6 @@ public class LoginController {
             e.printStackTrace();
             System.err.println("Error loading logo image: " + e.getMessage());
         }
-        // Bind image size to rootPane
         logoImageView.fitWidthProperty().bind(rootPane.widthProperty());
         logoImageView.fitHeightProperty().bind(rootPane.heightProperty());
     }

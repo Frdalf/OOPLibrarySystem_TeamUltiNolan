@@ -1,4 +1,3 @@
-// src/main/java/com/example/library/controller/ForgotPasswordController.java
 package com.example.library.controller;
 
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class ForgotPasswordController {
 
     private String generateVerificationCode() {
         Random random = new Random();
-        int code = 100000 + random.nextInt(900000); // Generate 6-digit code
+        int code = 100000 + random.nextInt(900000);
         return String.valueOf(code);
     }
 
@@ -45,9 +44,6 @@ public class ForgotPasswordController {
             alert.showAndWait();
             return;
         }
-
-        // TODO: Validate if email exists in database
-        // For now, we'll just generate a code and proceed
         
         String verificationCode = generateVerificationCode();
         
@@ -61,7 +57,6 @@ public class ForgotPasswordController {
             alert.setHeaderText(null);
             alert.setContentText("Kode verifikasi telah dikirim ke email Anda!");
             alert.showAndWait();
-            // Setelah user klik OK, pindah ke halaman reset password
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ResetPasswordView.fxml"));
             Parent root = loader.load();
             ResetPasswordController controller = loader.getController();

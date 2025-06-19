@@ -12,8 +12,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailService {
-    private static final String EMAIL_FROM = "naufalmuamar46@gmail.com"; // Ganti dengan email Anda
-    private static final String EMAIL_PASSWORD = "xxzjaudwpsrjygwi"; // Ganti dengan app password dari Gmail
+    private static final String EMAIL_FROM = "naufalmuamar46@gmail.com";
+    private static final String EMAIL_PASSWORD = "xxzjaudwpsrjygwi";
 
     public static void sendVerificationCode(String toEmail, String verificationCode) throws MessagingException {
         // Setup mail server properties

@@ -1,4 +1,3 @@
-/* src/main/resources/css/member_styles.css */
 .member-menu-button {
     -fx-background-color: rgba(255, 255, 255, 0);
     -fx-border-color: rgba(0, 0, 0, 0.3);
@@ -68,7 +67,6 @@
     -fx-padding: 10;
 }
 
-/* Table styles */
 .table-view {
     -fx-background-color: white;
     -fx-background-radius: 5;
@@ -108,7 +106,6 @@
     -fx-text-fill: black;
 }
 
-/* Button styles */
 .button {
     -fx-background-radius: 5;
     -fx-cursor: hand;
@@ -116,7 +113,6 @@
     -fx-padding: 8 16;
 }
 
-/* Text field styles */
 .text-field {
     -fx-background-radius: 5;
     -fx-border-radius: 5;
@@ -128,7 +124,6 @@
     -fx-border-color: #ffffff;
 }
 
-/* Spinner styles */
 .spinner {
     -fx-background-radius: 5;
     -fx-border-radius: 5;
@@ -147,24 +142,24 @@
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #5bc0de; /* Biru info untuk header tabel */
+    -fx-background-color: #5bc0de;
 }
 
 .tab-pane .tab-header-area .tab-header-background {
-    -fx-background-color: #A9A9A9; /* Abu-abu gelap untuk background header tab */
+    -fx-background-color: #A9A9A9;
 }
 
 .tab-pane .tab {
-    -fx-background-color: #DCDCDC; /* Abu-abu terang default tab */
+    -fx-background-color: #DCDCDC;
     -fx-padding: 5px 15px;
 }
 
 .tab-pane .tab:selected {
-    -fx-background-color: #ffffff; /* Putih untuk tab yang dipilih */
+    -fx-background-color: #ffffff;
     -fx-border-color: #4682B4;
     -fx-border-width: 2px 0 0 0;
 }
 
 .tab-pane .tab:hover {
-    -fx-background-color: #C0C0C0; /* Silver saat hover */
+    -fx-background-color: #C0C0C0;
 }

@@ -50,7 +50,6 @@ public class MainApp extends Application {
         primaryStage.show();
     }
 
-    // Metode untuk menampilkan halaman admin
     public static void showAdminView() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/AdminView.fxml"));
         Parent root = loader.load();
@@ -66,7 +65,6 @@ public class MainApp extends Application {
         primaryStage.show();
     }
 
-    // Metode untuk menampilkan halaman member
     public static void showMemberView(Member member) throws IOException {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/MemberView.fxml"));
         Parent root = loader.load();
@@ -84,7 +82,6 @@ public class MainApp extends Application {
         primaryStage.show();
     }
 
-    // Metode untuk menampilkan halaman registrasi member
     public static void showRegistrationView() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/RegisterFormView.fxml"));
         Parent root = loader.load();
@@ -102,7 +99,6 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-        // Inisialisasi DataManager untuk membuat file CSV jika belum ada
         DataManager.initializeDataFiles();
         launch(args);
     }
